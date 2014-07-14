@@ -1,0 +1,19 @@
+{
+  "name": "jsprocess",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^0.9.0",
+    "colors": "^0.6.2",
+    "csv": "^0.4.0",
+    "csv-parse": "0.0.5",
+    "fast-csv": "^0.4.1",
+    "underscore": "^1.6.0"
+  }
+}
