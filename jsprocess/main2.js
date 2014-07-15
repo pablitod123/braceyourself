@@ -26,16 +26,6 @@ var processData = function(file) {
     console.log('Success!  Results:'.green);
     var force_final = _.flatten(results);
     d3_data.push(force_final);
-    // console.log(force_final.length);
-    // This line turns the array into JSON object
-    // var force_final_json = JSON.stringify(force_final);
-    // console.log(force_final);
-    // console.log(force_final_json);
-    // This line writes the JSON object to new file
-    // fs.writeFile('data.json', force_final_json, function(err) {
-    //   if (err) throw err;
-    //   console.log('file saved'.green);
-    // });
   });
 
   async.mapLimit(file, 100, function(item, cb) {
@@ -51,7 +41,6 @@ var processData = function(file) {
     console.log('Success!  Results:'.green);
     var position_final = _.flatten(results);
     d3_data.push(position_final);
-    // console.log(position_final.length);
   });
 
   async.mapLimit(file, 100, function(item, cb) {
@@ -65,12 +54,9 @@ var processData = function(file) {
     var date_final = _.flatten(results);
     d3_data.push(date_final);
    
-    // console.log(date_final);
   });
 
-  // console.log(d3_data);
   var d3_data_final = _.zip(d3_data[0],d3_data[1],d3_data[2]);
-  // console.log(d3_data_final);
   var d3_data_final_json = JSON.stringify(d3_data_final);
     fs.writeFile('data.json', d3_data_final_json, function(err) {
       if (err) throw err;
