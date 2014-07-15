@@ -56,6 +56,12 @@ var processData = function(file) {
     d3_data.push(date_final);
    
   });
+  console.log(d3_data[0].toString());
+
+  fs.writeFile('force.csv', d3_data[0].toString() + "\n" + d3_data[1].toString() + "\n" + d3_data[2].toString(), function(err) {
+      if (err) throw err;
+      console.log('file saved'.green);
+  });
 
   var d3_data_final = _.zip(d3_data[0],d3_data[1],d3_data[2]);
   var d3_data_final_json = JSON.stringify(d3_data_final);
