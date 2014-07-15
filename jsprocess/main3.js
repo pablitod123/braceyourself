@@ -23,7 +23,7 @@ var processData = function(file) {
   }, function(err, results) {
     if (err) throw err;
 
-    console.log('Success!  Results:'.green);
+    // console.log('Success!  Results:'.green);
     var force_final = _.flatten(results);
     d3_data.push(force_final);
   });
@@ -38,7 +38,7 @@ var processData = function(file) {
   }, function(err, results) {
     if (err) throw err;
 
-    console.log('Success!  Results:'.green);
+    // console.log('Success!  Results:'.green);
     var position_final = _.flatten(results);
     d3_data.push(position_final);
   });
@@ -50,34 +50,41 @@ var processData = function(file) {
     cb(null, [x]);
   }, function(err, results) {
     if (err) throw err;
-    console.log('Success!  Results:'.green);
+    // console.log('Success!  Results:'.green);
     var date_final = _.flatten(results);
-    console.log(date_final);
+    // console.log(date_final);
     d3_data.push(date_final);
    
   });
-  console.log(d3_data[0].toString());
+  // console.log(d3_data[0].toString());
 
-  fs.writeFile('force.csv', d3_data[0].toString() + "\n" + d3_data[1].toString() + "\n" + d3_data[2].toString(), function(err) {
-      if (err) throw err;
-      console.log('file saved'.green);
-  });
-
+  // fs.writeFile('force.csv', d3_data[0].toString() + "\n" + d3_data[1].toString() + "\n" + d3_data[2].toString(), function(err) {
+  //     if (err) throw err;
+  //     console.log('file saved'.green);
+  // });
+ 
   var d3_data_final = _.zip(d3_data[0],d3_data[1],d3_data[2]);
-  var d3_data_final_json = JSON.stringify(d3_data_final);
-    fs.writeFile('data.json', d3_data_final_json, function(err) {
-      if (err) throw err;
-      console.log('file saved'.green);
-  });
+  // var d3_data_final_json = JSON.stringify(d3_data_final);
+  //   fs.writeFile('data.json', d3_data_final_json, function(err) {
+  //     if (err) throw err;
+  //     console.log('file saved'.green);
+  // });
+ 
 
-    fs.writeFile('data.csv', d3_data_final, function(err) {
+ var csvContent = ""
+  d3_data_final.forEach(function(infoArray, index){
+   dataString = infoArray.join(",");
+   csvContent += dataString + "\n" 
+}); 
+
+    fs.writeFile('data.csv', csvContent, function(err) {
       if (err) throw err;
-      console.log('file saved'.green);
+      console.log('csv file saved'.green);
   });
 };
 
 var variableParse = function(constant) {
-  console.log('Variable Parse'.red);
+  // console.log('Variable Parse'.red);
   var person_id = +constant[0][0];
   var force_zero = +constant[0][1];
   var force_ref = +constant[0][2];
@@ -92,7 +99,7 @@ var variableParse = function(constant) {
   var imin = +constant[1][4];
 
   date = new Date(iyear,imonth,iday,ihour,imin);
-  console.log(date);
+  // console.log(date);
   
 };
 
