@@ -9,7 +9,7 @@ var force_final,
     position_final,
     date_final;
 var d3_data = []
-var date = new Date(2014, 7, 14, 7, 24);
+var date;
 
 
 var processData = function(file) {
@@ -52,6 +52,7 @@ var processData = function(file) {
     if (err) throw err;
     console.log('Success!  Results:'.green);
     var date_final = _.flatten(results);
+    console.log(date_final);
     d3_data.push(date_final);
    
   });
@@ -64,9 +65,30 @@ var processData = function(file) {
   });
 };
 
+var variableParse = function(constant) {
+  console.log('Variable Parse'.red);
+  var person_id = +constant[0][0];
+  var force_zero = +constant[0][1];
+  var force_ref = +constant[0][2];
+  var position_ref = +constant[0][3];
+
+  //write these numbers to something
+
+  var iyear = +constant[1][0];
+  var imonth = +constant[1][1];
+  var iday = +constant[1][2];
+  var ihour = +constant[1][3];
+  var imin = +constant[1][4];
+
+  date = new Date(iyear,imonth,iday,ihour,imin);
+  console.log(date);
+  
+};
+
 var chunkSize = 100; // Size of each chunk
 var file = []; // Final array of chunk arrays of size 'chunkSize'
 var tmp = []; // Temporary array
+var constant = []; //Array of first two rows - constant variables
 var i = 0;
 var j = 0;
 var csvStream = csv()
@@ -80,9 +102,13 @@ var csvStream = csv()
         tmp = [];
       }
     }
+    else {
+      constant.push(data);
+    }
     i++;
   })
   .on('end', function() {
+    variableParse(constant);
     processData(file);
   });
 
