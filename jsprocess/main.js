@@ -19,23 +19,31 @@ var processData = function(file) {
 
     console.log('Success!  Results:'.green);
     var force_final = _.flatten(results);
-    console.log(force_final);
-  });
-
-  async.mapLimit(file, 100, function(item, cb) {
-    var positionSum = 0;
-    _.each(item, function(el) {
-      positionSum += +el[2];
+    // This line turns the array into JSON object
+    var force_final_json = JSON.stringify(force_final);
+    // console.log(force_final);
+    console.log(force_final_json);
+    // This line writes the JSON object to new file
+    fs.writeFile('data.json', force_final_json, function(err) {
+      if (err) throw err;
+      console.log('file saved'.green);
     });
-
-    cb(null, [positionSum/item.length]);
-  }, function(err, results) {
-    if (err) throw err;
-
-    console.log('Success!  Results:'.green);
-    var position_final = _.flatten(results);
-    console.log(position_final);
   });
+
+  // async.mapLimit(file, 100, function(item, cb) {
+  //   var positionSum = 0;
+  //   _.each(item, function(el) {
+  //     positionSum += +el[2];
+  //   });
+
+  //   cb(null, [positionSum/item.length]);
+  // }, function(err, results) {
+  //   if (err) throw err;
+
+  //   console.log('Success!  Results:'.green);
+  //   var position_final = _.flatten(results);
+  //   console.log(position_final);
+  // });
 };
 
 var chunkSize = 100; // Size of each chunk
