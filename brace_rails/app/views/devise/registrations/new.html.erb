@@ -3,6 +3,12 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+  <div><%= f.label :fname %><br />
+  <%= f.text_field :fname %></div>
+
+   <div><%= f.label :lname %><br />
+  <%= f.text_field :lname %></div>
+
   <div><%= f.label :email %><br />
   <%= f.email_field :email, autofocus: true %></div>
 
@@ -11,6 +17,10 @@
 
   <div><%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+
+  <div><%= f.label :role %><br />
+     <%= f.select :role, [['Doctor', 'Doctor'], ['Patient', 'Patient'], ['Parent', 'Parent']]%></div>
+
 
   <div><%= f.submit "Sign up" %></div>
 <% end %>
