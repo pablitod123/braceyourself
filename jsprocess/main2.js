@@ -52,16 +52,18 @@ var processData = function(file) {
     if (err) throw err;
     console.log('Success!  Results:'.green);
     var date_final = _.flatten(results);
-    console.log(date_final);
+    // console.log(date_final);
     d3_data.push(date_final);
    
   });
 
   var d3_data_final = _.zip(d3_data[0],d3_data[1],d3_data[2]);
+  console.log(d3_data_final);
   var d3_data_final_json = JSON.stringify(d3_data_final);
     fs.writeFile('data.json', d3_data_final_json, function(err) {
       if (err) throw err;
       console.log('file saved'.green);
+      console.log(d3_data_final_json.yellow);
   });
 };
 
