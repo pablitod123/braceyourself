@@ -1,3 +1,5 @@
+//node --stack-size=32000 main4.js
+
 var async = require('async'),
     csv = require('fast-csv'),
     colors = require('colors'),
