@@ -5,6 +5,21 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  def after_sign_in_path_for(resource)
+		print "Inside sign in path for"
+		
+		if current_user.role == "Doctor"
+			doctor_path(id: Doctor.find_by(user_id: current_user.id).id)
+
+		elsif current_user.role == "Patient"
+			patient_path(id: Patient.find_by(user_id: current_user.id).id)
+		
+		else current_user.role == "Parent"
+			parent_path(id: Parent.find_by(user_id: current_user.id).id)
+		end
+	end
+
+
   protected
 
   def configure_permitted_parameters
