@@ -17,6 +17,7 @@ var processData = function(file) {
     var forceSum = 0;
     _.each(item, function(el) {
       forceSum += +el[1];
+      console.log(forceSum)
     });
 
     cb(null, [forceSum/item.length]);
