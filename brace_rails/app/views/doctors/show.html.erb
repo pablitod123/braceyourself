@@ -1,7 +1,9 @@
-<h1> Hi there </h1>
+<h1> Hi, Dr. <%= current_user.lname %> </h1>
 
-
+Here are your patients:
 <% @allpatients.each do |patient| %>
 <% user = User.find(patient.user_id) %>
-Patient Name: <%= user.fname %> <%= user.lname %><br><br>
+<%= link_to user.fname + " " + user.lname, '/doctors/' + params[:id].to_s + '/patients/' + patient.id.to_s %><br><br>
+
+<!-- # {controller: :doctors, action: :showpatient }, id: params[:id], patient_id: patient.id -->
 <% end %>

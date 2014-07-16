@@ -1,1 +1,8 @@
-<h1> This is the parents show page </h1>
+<h1> Hi, <%= current_user.fname %>  </h1>
+
+Your child:<br>
+<% @patients = Parent.find(params[:id]).patients %>
+<% @patients.each do |patient| %>
+<% user = User.find(patient.user_id) %>
+<%= user.fname + " " + user.lname %>
+<% end %>
