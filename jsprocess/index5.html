@@ -1,3 +1,5 @@
+<!-- python -m SimpleHTTPServer 3000 -->
+
 <!DOCTYPE html>
 <meta charset="utf-8">
 <body>
@@ -25,7 +27,7 @@ var y = d3.scale.linear()
 var xAxis = d3.svg.axis()
 	.scale(x)
 	.orient("bottom").ticks(15)
-	.tickFormat(d3.time.format("%a %H:%M"));
+	.tickFormat(d3.time.format("%a %b"));
 var yAxis = d3.svg.axis()
 	.scale(y)
 	.orient("left").ticks(15);
