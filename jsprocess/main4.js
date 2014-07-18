@@ -83,6 +83,11 @@ var processData = function(file) {
       if (err) throw err;
       console.log('csv file saved'.green);
   });
+
+  //     fs.writeFile('onedayinfo.csv',??, function(err) {
+  //     if (err) throw err;
+  //     console.log('personinfo file saved'.green);
+  // });
 };
 
 var variableParse = function(constant) {
@@ -107,14 +112,17 @@ var variableParse = function(constant) {
   var ihour = +constant[1][3];
   var imin = +constant[1][4];
 
-  date = new Date(iyear,imonth,iday,ihour,imin);
+  date = new Date(iyear,(imonth - 1),iday,ihour,imin);
   // console.log(date);
   
 };
 
 // console.log(VariableParse(person_id))
 
-var chunkSize = 2400; // Size of each chunk
+var chunkSize = 100; 
+
+// var chunkSize = 2400; for 30 day graph
+// Size of each chunk
 var file = []; // Final array of chunk arrays of size 'chunkSize'
 var tmp = []; // Temporary array
 var constant = []; //Array of first two rows - constant variables
