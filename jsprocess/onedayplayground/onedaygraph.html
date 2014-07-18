@@ -95,10 +95,11 @@ d3.csv("../data.csv", function(error,data) {
         .call(xAxis)
         .selectAll("text")  
             .style("text-anchor", "end")
+             .style("font-size", "14px")
             .attr("dx", "-.8em")
             .attr("dy", ".15em")
             .attr("transform", function(d) {
-                return "rotate(-25)" 
+                return "rotate(-35)" 
                 });
 
 	svg2.append("text")      // text label for the x axis
@@ -119,6 +120,7 @@ d3.csv("../data.csv", function(error,data) {
 	     .attr("x", 0 - (height / 2))
 	     .attr("dy", "1em")
 	     .style("text-anchor", "end")
+	     .style("font-size", "14px")
 	     .text("Force");
 
 	  svg2.append("text")

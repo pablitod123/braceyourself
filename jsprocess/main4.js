@@ -6,7 +6,7 @@ var async = require('async'),
     fs = require('fs'),
     _ = require('underscore');
 
-var stream = fs.createReadStream('30days.csv');
+var stream = fs.createReadStream('6month.csv');
 var force_final,
     position_final,
     date_final;
