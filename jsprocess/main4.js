@@ -92,6 +92,13 @@ var variableParse = function(constant) {
   var force_ref = +constant[0][2];
   var position_ref = +constant[0][3];
 
+  var personalinfo = "personid,forcezero,forceref,positionref" + "\n" + [person_id,force_zero,force_ref, position_ref]; 
+
+   fs.writeFile('personinfo.csv',personalinfo, function(err) {
+      if (err) throw err;
+      console.log('personinfo file saved'.green);
+  });
+
   //write these numbers to something
 
   var iyear = +constant[1][0];
@@ -104,6 +111,8 @@ var variableParse = function(constant) {
   // console.log(date);
   
 };
+
+// console.log(VariableParse(person_id))
 
 var chunkSize = 2400; // Size of each chunk
 var file = []; // Final array of chunk arrays of size 'chunkSize'

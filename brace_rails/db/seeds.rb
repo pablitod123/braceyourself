@@ -29,6 +29,11 @@ end
 	Patient.create(user_id: user.id, doctor_id: 3, parent_id: i + 11 )
 end 
 
+10.times do |i|
+	freq = ['day', 'week', 'month']
+	Incentive.create(title:"Incentive Title #{i+1}", description:"This is the description.", frequency:freq.sample, compliance: [*50..100].sample, reward: [*1..20].sample, parent_id: i+1, patient_id: i+1 )
+end
+
 
 
 

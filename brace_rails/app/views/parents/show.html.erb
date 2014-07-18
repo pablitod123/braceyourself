@@ -5,12 +5,26 @@
 
 <h1> Hi, <%= current_user.fname %>  </h1>
 
+<div>
 Your child:<br>
 <% @patients = Parent.find(params[:id]).patients %>
 <% @patients.each do |patient| %>
 <% user = User.find(patient.user_id) %>
 <%= user.fname + " " + user.lname %>
+<% end %><br>
+</div>
+<br>
+<div>
+Current Incentives:<br>
+<% @incentive = Incentive.where(parent_id: Parent.find_by(user_id: current_user.id).id)%>
+<% @incentive.each do |incentive| %>
+<%= incentive.title %>: Each <%= incentive.frequency%> if compliance is <%=incentive.compliance%>% give <%=User.find(Patient.find_by(parent_id: Parent.find_by(user_id: current_user.id).id).user_id).fname%> $<%=incentive.reward%>.<br>
+<%= link_to "Edit", edit_incentive_path(id:incentive.id) %>&nbsp&nbsp<%= link_to "delete", {:controller => "incentives", :action => 'destroy', :id => incentive.id}, :method => :delete %><br>
 <% end %>
+
+<br>
+<%= link_to "Create an incentive", new_incentive_path %>
+</div>
 
 <div id = "graph1"></div>
 <div id = "graph2"></div>
@@ -205,4 +219,6 @@ d3.csv("/data.csv", function(error,data) {
       .attr("d", line2);
 });
 </script>
+
+
 
