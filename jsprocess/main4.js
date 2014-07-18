@@ -20,7 +20,7 @@ var processData = function(file) {
     var forceSum = 0;
     _.each(item, function(el) {
       forceSum += +el[1];
-      console.log(forceSum)
+      // console.log(forceSum)
     });
 
     cb(null, [forceSum/item.length]);
@@ -105,7 +105,7 @@ var variableParse = function(constant) {
   
 };
 
-var chunkSize = 100; // Size of each chunk
+var chunkSize = 2400; // Size of each chunk
 var file = []; // Final array of chunk arrays of size 'chunkSize'
 var tmp = []; // Temporary array
 var constant = []; //Array of first two rows - constant variables

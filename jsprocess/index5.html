@@ -14,12 +14,13 @@
 
 <script>
 var margin = {top:20, right: 20, bottom: 30, left: 50},
-	width = 1100 - margin.left - margin.right,
+	width = 1200 - margin.left - margin.right,
 	height = 600 - margin.top - margin.bottom;
 
 var format = d3.time.format("%a %b %d %Y %H:%M:%S GMT%Z (EDT)").parse;
 
 var x = d3.time.scale()
+	// .domain([09/21/2014, 10/02/2014])
 	.range([0, width]);
 var y = d3.scale.linear()
 	.range([height, 0]);
@@ -27,7 +28,7 @@ var y = d3.scale.linear()
 var xAxis = d3.svg.axis()
 	.scale(x)
 	.orient("bottom").ticks(15)
-	.tickFormat(d3.time.format("%a %b"));
+	.tickFormat(d3.time.format("%b %d %H:%M"));
 var yAxis = d3.svg.axis()
 	.scale(y)
 	.orient("left").ticks(15);
@@ -39,7 +40,7 @@ var svg = d3.select("#graph1").append("svg")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var line = d3.svg.line()
-	.interpolate("step-before")
+	.interpolate("basis")
 	.x(function(d) { return x(d.date); })
 	.y(function(d) { return y(d.Position); });
 
