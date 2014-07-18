@@ -1,21 +1,4 @@
-<script src="http://d3js.org/d3.v3.js"></script>
-<script src="https://rawgithub.com/tmcw/simple-statistics/master/src/simple_statistics.js"></script>
-<link rel="stylesheet" type="text/css" href="style.css" />
-
-
-<h1> Hi, <%= current_user.fname %>  </h1>
-
-Your child:<br>
-<% @patients = Parent.find(params[:id]).patients %>
-<% @patients.each do |patient| %>
-<% user = User.find(patient.user_id) %>
-<%= user.fname + " " + user.lname %>
-<% end %>
-
-<div id = "graph1"></div>
-<div id = "graph2"></div>
-<script>
-	var margin = {top:20, right: 20, bottom: 30, left: 50},
+var margin = {top:20, right: 20, bottom: 30, left: 50},
 	width = 1200 - margin.left - margin.right,
 	height = 600 - margin.top - margin.bottom;
 
@@ -53,7 +36,7 @@ var line = d3.svg.line()
 // 	.x(function(d){return x(d.date)})
 // 	.y(function(d){return y(regression(d.date))});
 
-d3.csv("/data.csv", function(error,data) {
+d3.csv("data.csv", function(error,data) {
 	data.forEach(function(d) {
 		d.date = format(d.date);
 		d.Force = +d.Force;
@@ -138,7 +121,7 @@ var line2 = d3.svg.line()
 	.x(function(d) { return x(d.date); })
 	.y(function(d) { return y(d.Force); });
 
-d3.csv("/data.csv", function(error,data) {
+d3.csv("data.csv", function(error,data) {
 	data.forEach(function(d) {
 		d.date = format(d.date);
 		d.Force = +d.Force;
@@ -204,5 +187,4 @@ d3.csv("/data.csv", function(error,data) {
       .attr("class", "reg")
       .attr("d", line2);
 });
-</script>
 
