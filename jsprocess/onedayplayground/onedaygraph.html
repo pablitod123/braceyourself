@@ -11,9 +11,9 @@
 <!-- <div id = "graph1"></div> -->
 <div id = "graph2"></div>
 <script>
-	var margin = {top:20, right: 20, bottom: 30, left: 50},
+	var margin = {top: 30, right: 40, bottom: 60, left: 50},
 	width = 900 - margin.left - margin.right,
-	height = 150 - margin.top - margin.bottom;
+	height = 170 - margin.top - margin.bottom;
 
 var format = d3.time.format("%a %b %d %Y %H:%M:%S GMT%Z (EDT)").parse;
 
@@ -26,10 +26,14 @@ var x = d3.time.scale()
 var y = d3.scale.linear()
 	.range([height, 0]);
 
+
+// s = s.replace(/^0+/, '');
+
+
 var xAxis = d3.svg.axis()
 	.scale(x)
 	.orient("bottom").ticks(20)
-	.tickFormat(d3.time.format("%H %M %S"));
+	.tickFormat(d3.time.format("%I %p"));
 var yAxis = d3.svg.axis()
 	.scale(y)
 	.orient("left").ticks(4);
@@ -86,19 +90,27 @@ d3.csv("../data.csv", function(error,data) {
   });
 
 	svg2.append("g")
-		.attr("class", "x axis")
-		.attr("transform", "translate(0," + height + ")")
-		.call(xAxis); 
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis)
+        .selectAll("text")  
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", function(d) {
+                return "rotate(-25)" 
+                });
 
 	svg2.append("text")      // text label for the x axis
         .attr("transform",
           "translate(" + (width/2) + " ," +
                          (height + margin.bottom) + ")")
         .style("text-anchor", "end")
-        .text("Date");
+        .text("Time");
 
 	 svg2.append("g")
       .attr("class", "y axis")
+      .attr("transform", "translate(-10)")
       .call(yAxis)
 
 	svg2.append("text")
@@ -109,14 +121,14 @@ d3.csv("../data.csv", function(error,data) {
 	     .style("text-anchor", "end")
 	     .text("Force");
 
-	  // svg2.append("text")
-   //      .attr("x", (width / 2))
-   //      .attr("y", 0 - (margin.top / 2))
-   //      .attr("dy", "1em")
-   //      .attr("text-anchor", "middle")
-   //      .style("font-size", "20px")
-   //      .style("text-decoration", "underline")
-   //      .text("Force vs Time Graph");
+	  svg2.append("text")
+        .attr("x", (width / 2))
+        .attr("y", 0 - (margin.top / 2))
+        .attr("dy", "1em")
+        .attr("text-anchor", "middle")
+        .style("font-size", "20px")
+        .style("text-decoration", "underline")
+        .text("Today's Brace Wear");
 
        svg2.selectAll("dot")
         .data(data)
@@ -127,18 +139,6 @@ d3.csv("../data.csv", function(error,data) {
         .attr("width", 4)
         .attr("height", 20) 
         .attr("fill", function(d) {return color(d.Force); });
-
-  
-
-     // svg2.append("path")
-     //  .datum(data)
-     //  .attr("class", "line")
-     //  .attr("d", line2)  
-
-      //  svg2.append("path")
-      // .datum(lindata2)
-      // .attr("class", "reg")
-      // .attr("d", line2);
 });
 
 </script>
