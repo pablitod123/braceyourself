@@ -1,4 +1,4 @@
-//node --stack-size=32000 main4.js
+//node --stack-size=32000 seconds.js
 
 var async = require('async'),
     csv = require('fast-csv'),
@@ -99,7 +99,7 @@ var variableParse = function(constant) {
 
   var personalinfo = "personid,forcezero,forceref,positionref" + "\n" + [person_id,force_zero,force_ref, position_ref]; 
 
-   fs.writeFile('personinfo.csv',personalinfo, function(err) {
+   fs.writeFile('info.csv',personalinfo, function(err) {
       if (err) throw err;
       console.log('personinfo file saved'.green);
   });

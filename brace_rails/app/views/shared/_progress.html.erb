@@ -1,0 +1,81 @@
+<h2><%= @format.html_safe.capitalize %></h2>
+
+<div class='pos_chart'>
+<h2> Position Goal </h2>
+<%= @position_message %>
+<div id='pos_chart'></div>
+</div>
+
+<div class='force_chart'>
+<h2> Force Goal </h2>
+<%= @force_message %>
+<div id='force_chart'></div>
+</div>
+
+<script>
+var pos_chart = c3.generate({
+    data: {
+        columns: [
+            ['data', <%=@position_percentage%>]
+        ],
+        type: 'gauge'
+    },
+    tooltip: {
+        show: false
+    },
+    bindto: '#pos_chart',
+    gauge: {
+//        label: {
+//            format: function(value, ratio) {
+//                return value;
+//            },
+//            show: false // to turn off the min/max labels.
+//        },
+//    min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
+//    max: 100, // 100 is default
+//    units: ' %',
+//    width: 39 // for adjusting arc thickness
+    },
+    color: {
+        pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
+        threshold: {
+//            unit: 'value', // percentage is default
+//            max: 200, // 100 is default
+            values: [30, 60, 90, 100]
+        }
+    }
+});
+
+var force_chart = c3.generate({
+    data: {
+        columns: [
+            ['data', <%=@force_percentage%>]
+        ],
+        type: 'gauge'
+    },
+    tooltip: {
+        show: false
+    },
+    bindto: '#force_chart',
+    gauge: {
+//        label: {
+//            format: function(value, ratio) {
+//                return value;
+//            },
+//            show: false // to turn off the min/max labels.
+//        },
+//    min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
+//    max: 100, // 100 is default
+//    units: ' %',
+//    width: 39 // for adjusting arc thickness
+    },
+    color: {
+        pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
+        threshold: {
+//            unit: 'value', // percentage is default
+//            max: 200, // 100 is default
+            values: [30, 60, 90, 100]
+        }
+    }
+});
+</script>

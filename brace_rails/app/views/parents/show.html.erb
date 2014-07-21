@@ -2,7 +2,6 @@
 <script src="https://rawgithub.com/tmcw/simple-statistics/master/src/simple_statistics.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css" />
 
-
 <h1> Hi, <%= current_user.fname %>  </h1>
 
 <div>
@@ -25,6 +24,14 @@ Current Incentives:<br>
 <br>
 <%= link_to "Create an incentive", new_incentive_path %>
 </div>
+
+<button id="myBtn">Try it</button>
+<p id="demo"></p>
+
+<% @format ||= 'month' %>
+<% progress_bar(@format, Patient.find_by(parent_id: Parent.find(params[:id])).id) %>
+<%= render "shared/progress" %>
+
 
 <div id = "graph1"></div>
 <div id = "graph2"></div>
