@@ -6,12 +6,12 @@ var async = require('async'),
     fs = require('fs'),
     _ = require('underscore');
 
-var stream = fs.createReadStream('6month.csv');
+var stream = fs.createReadStream('seconds.csv');
 var force_final,
     position_final,
     date_final;
 var d3_data = []
-var date;
+var date = new Date(2014,7,14,7,24);
 
 
 var processData = function(file) {
@@ -19,7 +19,7 @@ var processData = function(file) {
   async.mapLimit(file, 100, function(item, cb) {
     var forceSum = 0;
     _.each(item, function(el) {
-      forceSum += +el[1];
+      forceSum += +el[0];
       // console.log(forceSum)
     });
 
@@ -37,7 +37,7 @@ var processData = function(file) {
   async.mapLimit(file, 100, function(item, cb) {
     var positionSum = 0;
     _.each(item, function(el) {
-      positionSum += +el[2];
+      positionSum += +el[1];
     });
 
     cb(null, [positionSum/item.length]);
@@ -51,7 +51,9 @@ var processData = function(file) {
 
   async.mapLimit(file, 100, function(item, cb) {
       var x = 0;
-      x = new Date(+item[0][0] + date.getTime());
+      x = item[0][2];
+     
+
 
     cb(null, [x]);
   }, function(err, results) {
@@ -79,7 +81,7 @@ var processData = function(file) {
 
 
 
-    fs.writeFile('data.csv', csvContent, function(err) {
+    fs.writeFile('hour.csv', csvContent, function(err) {
       if (err) throw err;
       console.log('csv file saved'.green);
   });
@@ -90,36 +92,34 @@ var processData = function(file) {
   // });
 };
 
-var variableParse = function(constant) {
-  // console.log('Variable Parse'.red);
-  var person_id = +constant[0][0];
-  var force_zero = +constant[0][1];
-  var force_ref = +constant[0][2];
-  var position_ref = +constant[0][3];
+// var variableParse = function(constant) {
+//   // console.log('Variable Parse'.red);
+//   var person_id = +constant[0][0];
+//   var force_zero = +constant[0][1];
+//   var force_ref = +constant[0][2];
+//   var position_ref = +constant[0][3];
 
-  var personalinfo = "personid,forcezero,forceref,positionref" + "\n" + [person_id,force_zero,force_ref, position_ref]; 
+//   var personalinfo = "personid,forcezero,forceref,positionref" + "\n" + [person_id,force_zero,force_ref, position_ref]; 
 
-   fs.writeFile('personinfo.csv',personalinfo, function(err) {
-      if (err) throw err;
-      console.log('personinfo file saved'.green);
-  });
+   // fs.writeFile('personinfo.csv',personalinfo, function(err) {
+   //    if (err) throw err;
+   //    console.log('personinfo file saved'.green);
+
 
   //write these numbers to something
 
-  var iyear = +constant[1][0];
-  var imonth = +constant[1][1];
-  var iday = +constant[1][2];
-  var ihour = +constant[1][3];
-  var imin = +constant[1][4];
+  // var iyear = +constant[1][0];
+  // var imonth = +constant[1][1];
+  // var iday = +constant[1][2];
+  // var ihour = +constant[1][3];
+  // var imin = +constant[1][4];
 
-  date = new Date(iyear,(imonth - 1),iday,ihour,imin);
   // console.log(date);
   
-};
 
 // console.log(VariableParse(person_id))
 
-var chunkSize = 100; 
+var chunkSize = 10; 
 
 // var chunkSize = 2400; for 30 day graph
 // Size of each chunk
@@ -130,22 +130,17 @@ var i = 0;
 var j = 0;
 var csvStream = csv()
   .on('record', function(data) {
-    if (i > 1) {
+    if (i > 0) {
       tmp.push(data);
       j++;
-
       if (j % chunkSize === 0) {
         file.push(tmp);
         tmp = [];
       }
     }
-    else {
-      constant.push(data);
-    }
     i++;
   })
   .on('end', function() {
-    variableParse(constant);
     processData(file);
   });
 
