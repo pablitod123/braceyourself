@@ -1,4 +1,5 @@
 class PatientsController < ApplicationController
 	def show
-	end
+    progress_bar(params[:id])
+  end
 end
