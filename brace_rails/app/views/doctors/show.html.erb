@@ -1,6 +1,6 @@
-<h1> Hi, Dr. <%= current_user.lname %> </h1>
-
-Here are your patients:
+<script><%= add_gritter("Your patient is not wearing the brace properly", :title => "Patient update", :time => 12000, image: :notice) %></script>
+<h1> Hi, Dr. [NEED TO REPLACE THIS]</h1>
+<h3>Here are your patients:<h3>
 <% @allpatients.each do |patient| %>
 <% user = User.find(patient.user_id) %>
 <%= link_to user.fname + " " + user.lname, '/doctors/' + params[:id].to_s + '/patients/' + patient.id.to_s %><br><br>
