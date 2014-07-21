@@ -1,4 +1,9 @@
-<script><%= add_gritter("Your patient is not wearing the brace properly", :title => "Patient update", :time => 12000, image: :notice) %></script>
+<% @allpatients.each do |patient| %>
+<% user = User.find(patient.user_id) %>
+<script><%= add_gritter(user.fname + " " + user.lname + " is not wearing the brace properly", :title => "Patient update", :time => 12000, :sticky => true, :image => :warning) %></script>
+
+<!-- # {controller: :doctors, action: :showpatient }, id: params[:id], patient_id: patient.id -->
+<% end %>
 <h1> Hi, Dr. [NEED TO REPLACE THIS]</h1>
 <h3>Here are your patients:<h3>
 <% @allpatients.each do |patient| %>
