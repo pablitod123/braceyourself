@@ -84,10 +84,10 @@ var processData = function(file) {
       console.log('csv file saved'.green);
   });
 
-  //     fs.writeFile('onedayinfo.csv',??, function(err) {
-  //     if (err) throw err;
-  //     console.log('personinfo file saved'.green);
-  // });
+      fs.writeFile('onedayinfo.csv','info.csv', function(err) {
+      if (err) throw err;
+      console.log('personinfo file saved'.green);
+  });
 };
 
 var variableParse = function(constant) {
