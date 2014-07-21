@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+	<style>
+	.axis {
+	  font: 10px sans-serif;
+	}
+	.axis path,
+	.axis line {
+	  fill: none;
+	  stroke: #000;
+	  shape-rendering: crispEdges;
+  }
+	</style>
+</head>
+
+<body>
+	
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<body>
+<script>
+
+var margin = {top: 20, right: 20, bottom: 70, left: 40},
+    width = 600 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
+
+// Parse the date / time
+var format = d3.time.format("%a %b %d %Y %H:%M:%S GMT%Z (EDT)").parse;
+
+var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+
+var y = d3.scale.linear().range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+    .tickFormat(d3.time.format("%m-%b-%d"));
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(10);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", 
+          "translate(" + margin.left + "," + margin.top + ")");
+
+
+d3.csv("week.csv", function(error, data) {
+
+    data.forEach(function(d) {
+        d.date = format(d.date);
+        d.Position = +d.Position;
+    });
+	
+  x.domain(data.map(function(d) { return d.date; }));
+  y.domain([0, 1000]);
+
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+    .selectAll("text")
+      .style("text-anchor", "end")
+      .attr("dx", "-.8em")
+      .attr("dy", "-.55em")
+      .attr("transform", "rotate(-90)" );
+
+      // svg.append("line")
+      //  .attr("x1", 5)
+      //  .attr("y1", 150)
+      //  .attr("x2", 500)
+      //  .attr("y2", 150)
+      //  .attr("stroke-width", 2)
+      //  .attr("stroke", "black");
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Value ($)");
+
+  svg.selectAll("bar")
+      .data(data)
+    .enter().append("rect")
+      .attr ("fill", function(d) {
+          if (d.Position < 500) {
+          return "rgb(" + Math.round(d.Position) + ",10, 100)";
+          } else {
+            return "green"
+          }; 
+        })
+      .attr("x", function(d) { return x(d.date); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.Position); })
+      .attr("height", function(d) { return height - y(d.Position);
+        })
+
+    .on("mouseover", function(d) {
+          d3.select(this)
+          .transition()
+          .duration(50)
+          .attr("fill", "#CC0000");
+          })
+
+    .on("click", function(d) {
+      d3.select(this)
+      updateData();
+    })
+
+
+    .on("mouseout", function() {
+        d3.select(this)
+        .transition()
+        .duration(50)
+        .attr ("fill", function(d) {
+          if (d.Position < 500) {
+          return "rgb(" + Math.round(d.Position) + ",10, 100)";
+          } else {
+            return "green"
+          }; 
+        })
+      })
+     });
+
+  function updateData() {
+
+    // Get the data again
+    d3.csv("day.csv", function(error, data) {
+    data.forEach(function(d) {
+        d.date = format(d.date);
+        d.Position = +d.Position;
+    });
+
+    x.domain(data.map(function(d) { return d.date; }));
+    y.domain([0, d3.max(data, function(d) { return d.Position; })]);
+
+    var bars = svg.selectAll('bar')
+    .data(data);
+    // Remove
+    bars.exit().remove();
+    // Add
+    bars.enter().append('rect');
+
+    // Update 
+    bars.attr('x', function(d) { return x(d.date); })
+        .attr('width', x.rangeBand())
+        .attr('y', function(d) { return y(d.Position); })
+        .attr("height", function(d) { return height - y(d.Position); }); 
+
+       d3.select("g").transition()
+            .select(".x.axis") // change the x axis
+            .duration(750)
+            .call(xAxis);
+       //      // .selectAll("text")  
+       //      // .attr("transform", function(d) {
+       //      //     return "rotate(-35)" 
+       //      //     });
+     
+        d3.select("g").transition()
+            .select(".y.axis") // change the y axis
+            .duration(750)
+            .call(yAxis);
+    });
+}
+
+
+
+</script>
+</body>
+
+
+
