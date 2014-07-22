@@ -13,9 +13,12 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  devise_scope :user do
+    root :to => 'devise/sessions#new'
+  end
 
   # Example of regular route:
-  get 'doctors/:id/patients/:patient_id' => 'doctors#showpatient', as: 'show_patient_path'
+  # get 'doctors/:id/patients/:patient_id' => 'doctors#showpatient', as: 'show_patient_path'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
