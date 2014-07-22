@@ -18,15 +18,21 @@
  */
 
 .charts {
+  margin: auto;
 }
 
 #pos_chart {
-  width: 250px;
-  margin-bottom: -150px;
+  width: 50%;
+  height: 250px;
+  margin-bottom: -100px;
+  float: left;
 }
 
 #force_chart {
-  width: 250px;
+  width: 50%;
+  height: 250px;
+  margin-bottom: -100px;
+  float: right;
 }
 /*-- Chart --*/
 
