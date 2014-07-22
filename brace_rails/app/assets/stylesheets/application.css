@@ -17,6 +17,17 @@
  *= require gritter
  */
 
+.charts {
+}
+
+#pos_chart {
+  width: 250px;
+  margin-bottom: -150px;
+}
+
+#force_chart {
+  width: 250px;
+}
 /*-- Chart --*/
 
 .c3 svg {

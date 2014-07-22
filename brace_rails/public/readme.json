@@ -13,7 +13,12 @@
       {"name": "Wednesday", "size": 40},
       {"name": "Thursday", "size": 50},
       {"name": "Friday", "size": 10},
-      {"name": "Saturday", "size": 120}
+      {
+        "name": "Saturday",
+        "children": [
+        {"name": "Blah", "size": 20}
+        ]
+      }
      ]
     },
      {
