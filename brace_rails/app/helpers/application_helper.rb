@@ -51,5 +51,7 @@ module ApplicationHelper
     elsif @force_percentage>80 && @force_percentage<100
       @force_message = '<h3>So close, almost there!</h3>'.html_safe
     end
+
+    @format = format
   end
 end
