@@ -1,6 +1,13 @@
-<h1>This is <%= @thispatient.fname %>'s information page</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Load c3.css -->
+<link href="c3/c3.css" rel="stylesheet" type="text/css">
 
-<%= link_to 'Back to Patient List', '/doctors/' + params[:id].to_s %><br>
+<!-- Load d3.js and c3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="c3/c3.min.js"></script>
+<meta charset="utf-8">
 <style>
  
 text {
@@ -22,6 +29,7 @@ rect.background {
 }
  
 </style>
+</head>
 <body>
 <p id="p">Month</p>
 <div class='chart'>
@@ -30,8 +38,8 @@ rect.background {
 
 <script>
  
-var margin = {top: 0, right: 120, bottom: 0, left: 120},
-    width = 1200 - margin.left - margin.right,
+var margin = {top: 30, right: 120, bottom: 0, left: 120},
+    width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
  
 var x = d3.scale.linear()
@@ -72,7 +80,7 @@ svg.append("g")
   .append("line")
     .attr("y1", "100%");
  
-d3.json("/readme.json", function(error, root) {
+d3.json("readme.json", function(error, root) {
   partition.nodes(root);
   x.domain([0, root.value]).nice();
   down(root, 0);
@@ -339,3 +347,4 @@ var chart = c3.generate({
 
 </script>
 </body>
+</html>
