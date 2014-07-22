@@ -1,9 +1,15 @@
 class DoctorsController < ApplicationController
-
+before_action :get_doctor
 	
+
+  def get_doctor
+    @doctor = Doctor.find(params[:id])
+    @allpatients = (Doctor.find(params[:id]).patients)
+  end
+  
   def show
-  	@doctor = Doctor.find(params[:id])
-  	@allpatients = (Doctor.find(params[:id]).patients)
+  	# @doctor = Doctor.find(params[:id])
+  	# @allpatients = (Doctor.find(params[:id]).patients)
      
     if params[:search]
       @users = User.search(params[:search]).order("created_at DESC")

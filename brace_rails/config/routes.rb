@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations"}
-  resources :doctors
+  resources :doctors do
+    resources :patients
+  end
   resources :patients
   resources :parents
   resources :incentives
@@ -12,10 +14,14 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  # root 'registrations#new'
 
+
+devise_scope :user do
+  root :to => 'devise/sessions#new'
+end
   # Example of regular route:
-  get 'doctors/:id/patients/:patient_id' => 'doctors#showpatient', as: 'show_patient_path'
+  # get 'doctors/:id/patients/:patient_id' => 'doctors#showpatient', as: 'show_patient_path'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
