@@ -23,7 +23,7 @@ rect.background {
  
 </style>
 <body>
-<div id="p">month</div>
+<div id="p"></div>
 
 <div class="charts">
 <div class='pos_chart'>
@@ -105,6 +105,22 @@ function blah(num) {
 }
 
 function get_gauge_data(num) {
+  if (num == "allmonths") {
+    <% progress_bar("month", params[:patient_id]) %>
+    pos_chart.unload(['data']); 
+    pos_chart.load({
+      columns: [
+        ['data', <%= @position_percentage %>]
+      ]
+    });
+    force_chart.unload(['data']); 
+    force_chart.load({
+      columns: [
+        ['data', <%= @force_percentage %>]
+      ]
+    });
+  };
+
   if (num == "month") {
     <% progress_bar("month", params[:patient_id]) %>
     pos_chart.unload(['data']); 
@@ -122,21 +138,6 @@ function get_gauge_data(num) {
   };
   if (num == "week") {
     <% progress_bar("week", params[:patient_id]) %>
-    pos_chart.unload(['data']); 
-    pos_chart.load({
-      columns: [
-        ['data', <%= @position_percentage %>]
-      ]
-    });
-    force_chart.unload(['data']); 
-    force_chart.load({
-      columns: [
-        ['data', <%= @force_percentage %>]
-      ]
-    });
-  };
-  if (num == "day") {
-    <% progress_bar("day", params[:patient_id]) %>
     pos_chart.unload(['data']); 
     pos_chart.load({
       columns: [
@@ -483,7 +484,19 @@ d3.csv("/day1.csv", function(error, data) {
         .call(yAxis1d);
 
 });
-get_gauge_data("day");
+    <% progress_bar("day", params[:patient_id]) %>
+    pos_chart.unload(['data']); 
+    pos_chart.load({
+      columns: [
+        ['data', <%= @position_percentage %>]
+      ]
+    });
+    force_chart.unload(['data']); 
+    force_chart.load({
+      columns: [
+        ['data', <%= @force_percentage %>]
+      ]
+    });
 }
 
 
