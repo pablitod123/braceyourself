@@ -15,6 +15,24 @@ module ApplicationHelper
     pos_ref = info[1][3].to_f #position reference
     force_zero = info[1][1].to_f
     
+    #Compliance Total
+
+    compliance_sum = 0
+    (0..data_length-1).each do |n|
+      if data[n][1].to_f > pos_ref && data[n][0].to_f > force_zero
+        compliance_sum += 1
+      end
+    end
+
+    @length_stuff = ((data_length).to_f)*100
+    @compliance_sum = compliance_sum
+    @compliance_percentage = ((compliance_sum / (data_length).to_f)*100)
+
+    if @compliance_percentage>60 && @compliance_percentage<80
+      @compliance_message = '<h3>Getting there, keep going!</h3>'.html_safe
+    elsif @compliance_percentage>80 && @compliance_percentage<100
+      @compliance_message = '<h3>So close, almost there!</h3>'.html_safe
+    end
 
     #Position
     

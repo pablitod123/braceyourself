@@ -1,3 +1,82 @@
+<script>
+<body onload="show_day()">
+function show_day() {
+  <% progress_bar('day', params[:id]) %>
+  pos_chart.unload(['data']); 
+    pos_chart.load({
+      columns: [
+        ['data', <%= @position_percentage %>]
+      ]
+    });
+    force_chart.unload(['data']); 
+    force_chart.load({
+      columns: [
+        ['data', <%= @force_percentage %>]
+      ]
+    });
+};
+
+</script>
 <h1> This is the patient show page </h1>
-<% progress_bar('week', params[:id]) %>
+Current Incentives:<br>
+<% @incentives.each do |incentive| %>
+<%= incentive.title %>: Each <%= incentive.frequency%> if compliance is <%=incentive.compliance%>% get $<%=incentive.reward%>.<br>
+<% end %><br>
+<h2>Compliance: <div id="patient_compliance"><%=@compliance_percentage%></div>%</h2><br><br>
+<button onclick="show_day()">Today</button>
+<button onclick="show_week()">This Week</button>
+<button onclick="show_month()">This Month</button>
+
 <%= render "shared/progress" %>
+
+<script>
+function show_day() {
+  <% progress_bar('day', params[:id]) %>
+  pos_chart.unload(['data']); 
+    pos_chart.load({
+      columns: [
+        ['data', <%= @position_percentage %>]
+      ]
+    });
+    force_chart.unload(['data']); 
+    force_chart.load({
+      columns: [
+        ['data', <%= @force_percentage %>]
+      ]
+    });
+    document.getElementById("patient_compliance").innerHTML = <%=@compliance_percentage%>;
+};
+function show_week() {
+  <% progress_bar('week', params[:id]) %>
+  pos_chart.unload(['data']); 
+    pos_chart.load({
+      columns: [
+        ['data', <%= @position_percentage %>]
+      ]
+    });
+    force_chart.unload(['data']); 
+    force_chart.load({
+      columns: [
+        ['data', <%= @force_percentage %>]
+      ]
+    });
+    document.getElementById("patient_compliance").innerHTML = <%=@compliance_percentage%>;
+};
+function show_month() {
+  <% progress_bar("month", params[:id]) %>
+    pos_chart.unload(['data']); 
+    pos_chart.load({
+      columns: [
+        ['data', <%= @position_percentage %>]
+      ]
+    });
+    force_chart.unload(['data']); 
+    force_chart.load({
+      columns: [
+        ['data', <%= @force_percentage %>]
+      ]
+    });
+    document.getElementById("patient_compliance").innerHTML = <%=@compliance_percentage%>;
+};
+</script>
+

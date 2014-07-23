@@ -30,14 +30,28 @@
 #separate {
   height: 600px;
   width: 300px;
+  position: absolute;
+  left: 0px;
+  width: 300px;
+}
+
+#compliance_container {
+  vertical-align: middle;
+  margin: auto;
+  width: 30%;
+  text-align: center;
+}
+
+#compliance {
+  font-size: 75px;
 }
 
 #drilldown {
-    -webkit-transform: rotate(-90deg);
+/*    -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
     -o-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
-    transform: rotate(-90deg);
+    transform: rotate(-90deg);*/
 }
 /*-- Chart --*/
 
