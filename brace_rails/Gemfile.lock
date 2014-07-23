@@ -46,6 +46,9 @@ GEM
     erubis (2.7.0)
     execjs (2.2.1)
     gritter (1.1.0)
+    gumby-framework (0.0.1)
+      jquery-rails
+      modernizr-rails
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (2.1.2)
@@ -62,6 +65,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     minitest (5.4.0)
+    modernizr-rails (2.7.1)
     multi_json (1.10.1)
     orm_adapter (0.5.0)
     pg (0.17.1)
@@ -135,9 +139,11 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   gritter (= 1.1.0)
+  gumby-framework
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails
+  modernizr-rails
   pg
   rails (= 4.1.1)
   rails_12factor

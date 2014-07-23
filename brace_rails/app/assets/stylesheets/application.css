@@ -15,7 +15,18 @@
  *= require jquery-ui
  *= require jquery-ui/autocomplete
  *= require gritter
+ *= require gumby
  */
+
+h1, h2, h3, h4, h5, p {
+  letter-spacing: 0em;
+}
+
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"] {
+    font-family: Arial;
+    font-family: Georgia, Times, "Times New Roman", serif;
+}
 
 .charts {
   margin: auto;
