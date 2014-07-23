@@ -28,6 +28,11 @@ html, button, input, select, textarea,
     font-family: Georgia, Times, "Times New Roman", serif;
 }
 
+.align_center {
+  text-align: center;
+  margin: auto;
+}
+
 .charts {
   margin: auto;
 }
