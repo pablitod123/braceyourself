@@ -3,7 +3,7 @@
 <script><%= add_gritter(user.fname + " " + user.lname + " is not wearing the brace properly", :title => "Patient update", :time => 8000, :sticky => true, :image => :warning) %></script>
 <% end %> -->
 <!-- need to fix the erb that shows doctor name -->
-<h1> Hi, <%= User.first.lname %></h1> 
+<p>Hi, <%= User.first.lname %></p>
 <h1> Search Patient Name </h1>
 <br>
 <%= form_tag(doctor_path, :method => "get", id: "search-form") do %>
