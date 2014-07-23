@@ -7,61 +7,40 @@ fs.readFile('day.csv', function(err, file) {
   parse(file, {}, function(err, parsed) {
 
     function addNewProps(item) {
-      var obj = {};
-      obj.force     = +item[0];
-      obj.position  = +item[1];
-      obj.date      = moment(new Date(item[2]));
-      obj.dayOfWeek = obj.date.day();
-      obj.month     = obj.date.month();
-      obj.week      = obj.date.week();
-      return obj;
+      var obj = {
+        force: +item[0],
+        position: +item[1],
+        date: moment(new Date(item[2])),
+      };
+
+      return _.extend(obj, {
+        dayOfWeek: obj.date.day(),
+        dayName:   obj.date.format('dddd'),
+        week:      obj.date.week(),
+        month:     obj.date.month(),
+        monthName: obj.date.format('MMMM')
+      });
     }
 
     function groupByWeekInMonth(daysArr, monthNum) {
       var obj = {};
-      obj[monthNum] = _.groupBy(daysArr, week);
+      obj[monthNum] = _.groupBy(daysArr, 'week');
       return obj;
     };
 
-    var monthList = {};
-    // monthList: {'7': [31, 32, 33, 34], '8': }
-    function populateMonthList(data) {
-      _.each(data, transformMonthObj);
-
-      function transformMonthObj(arr, monthNum) {
-        monthList[monthNum] = extractWeek(arr);
-      }
-
-      function extractWeek(weekArray) {
-        return _.chain(weekArray)
-                 .pluck('week')
-                 .uniq()
-                 .value();
-      }
+    function addSchematics(arr) {
+      return arr;
     }
 
     var result = _.chain(parsed)
       .rest()
       .map(addNewProps)
       .groupBy('month')
-      .tap(populateMonthList)
+      .map(groupByWeekInMonth)
+      .map(addSchematics)
       .value();
 
     console.log(result);
-    console.log(monthList);
+    console.log(result[0]['6']);
   });
 });
-
-
-_.map({1: 'lol!', 2: 'cats!', 3: 'oh hey guys!', 4: 'summer calls'}, function(value, key) {
-  return value + ' heyy'
-});
-
-
-
-
-
-var x = Date.parse('Mon Jul 18 2014 08:45:00 GMT-0400 (EDT)');
-var y = new Date(+x);
-
-y.getMonth()

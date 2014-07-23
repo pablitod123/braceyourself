@@ -22,10 +22,8 @@ h1, h2, h3, h4, h5, p {
   letter-spacing: 0em;
 }
 
-html, button, input, select, textarea,
-.pure-g [class *= "pure-u"] {
-    font-family: Arial;
-    font-family: Georgia, Times, "Times New Roman", serif;
+.buttoncont {
+  text-align: center;
 }
 
 .charts {
@@ -33,9 +31,11 @@ html, button, input, select, textarea,
 }
 
 #pos_chart {
+  margin-bottom:-50%;
 }
 
 #force_chart {
+  margin-bottom:-50%;
 }
 
 #separate {
@@ -44,6 +44,11 @@ html, button, input, select, textarea,
   position: absolute;
   left: 0px;
   width: 300px;
+}
+
+.c3container {
+  margin-top:20px;
+  text-align: center;
 }
 
 #compliance_container {
@@ -58,11 +63,12 @@ html, button, input, select, textarea,
 }
 
 #drilldown {
-/*    -webkit-transform: rotate(-90deg);
+   /* -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
     -o-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
     transform: rotate(-90deg);*/
+    margin-left:-15%;
 }
 /*-- Chart --*/
 
@@ -91,6 +97,7 @@ html, button, input, select, textarea,
   stroke: #fff;
 
 }
+
 .c3-chart-arc text {
   fill: #fff;
   font-size: 13px;
@@ -287,7 +294,7 @@ html, button, input, select, textarea,
 
 #back_to_list {
   display:inline-block;
-  font-size: 30px;
+  font-size: 20px;
   border: 2px solid black;
   border-radius: 5px;
   padding:10px;

@@ -9,7 +9,7 @@
 <style>
  
 text {
-  font: 10px sans-serif;
+  font: 14px Arial;
 }
  
 rect.background {
@@ -29,31 +29,49 @@ rect.background {
 </style>
 <body>
 
+<div id="viewdesc"></div>
 
 
-  <div id="p"></div>
-    <div id="compliance_container">
+ <div class= "row">
+    <div class = "twelve columns" id="compliance_container">
       <h1>Compliance Rate:</h1><div id="compliance"></div>
     </div>
-
-
-<!--   <div class="charts"> -->
-  <h2> Position Goal </h2>
-  <div id='pos_chart'></div>
-  <h2> Force Goal </h2>
-  <div id='force_chart'></div>
-<!--   </div> -->
-
-
-  <div id="buttons">
-  <input name="updateButton" type="button" value="One day view" onclick="updateData()" />
-  <input name="updateButton" type="button" value="Reset" onclick="resetData()" />
   </div>
 
-  <div id="separate"></div>
+<div class = "c3container">
+  <div class = "row">
+    <div class = "four columns">
+      <div id='pos_chart'></div>
+      <h2> Position Goal </h2>
+    </div>
+    <div class = "four columns"></div>
+    <div class = "four columns">
+      <div id='force_chart'></div>
+      <h2> Force Goal </h2>
+    </div>
+  </div>
+</div>
 
-  <div id="drilldown"></div>
 
+<div class = "row">
+  <div class = "buttoncont">
+    <div class = "twelve columns">
+    <p>Hai</p>
+      <div class = "medium primary btn">
+        <input name="updateButton" type="button" value="One day view" onclick="updateData()" />
+      </div>
+      <div class = "medium primary btn">
+        <input name="updateButton" type="button" value="Reset" onclick="resetData()" />
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<!--   <div id="separate"></div> -->
+<div class = "row">
+    <div id="drilldown"></div>
+</div>
+  
 
 
 <script>
@@ -61,14 +79,14 @@ resetData();
 function resetData(){
 d3.select("#drilldown").html('');
 
-var margin = {top: 0, right: 120, bottom: 0, left: 120},
+var margin = {top: 20, right: 60, bottom: 0, left: 120},
     width = 1200 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    height = 400 - margin.top - margin.bottom;
  
 var x = d3.scale.linear()
     .range([0, width]);
  
-var barHeight = 50;
+var barHeight = 40;
  
 var color = d3.scale.ordinal()
     .range(["steelblue", "#ccc"]);
@@ -114,7 +132,6 @@ d3.json("/readme.json", function(error, root) {
 // }
 
 function blah(num) {
-   document.getElementById("p").innerHTML = num;
    get_gauge_data(num);
 }
 
@@ -134,6 +151,7 @@ function get_gauge_data(num) {
       ]
     });
     document.getElementById("compliance").innerHTML = <%=@compliance_percentage%>;
+    document.getElementById("viewdesc").innerHTML = "All Months View";
   };
 
   if (num == "month") {
@@ -151,6 +169,7 @@ function get_gauge_data(num) {
       ]
     });
     document.getElementById("compliance").innerHTML = <%=@compliance_percentage%>;
+    document.getElementById("viewdesc").innerHTML = "Month View";
   };
   if (num == "week") {
     <% progress_bar("week", params[:patient_id]) %>
@@ -167,6 +186,7 @@ function get_gauge_data(num) {
       ]
     });
     document.getElementById("compliance").innerHTML = <%=@compliance_percentage%>;
+    document.getElementById("viewdesc").innerHTML = "Week View";
   };
 }
  

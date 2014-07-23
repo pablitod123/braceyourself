@@ -26,7 +26,7 @@ module ApplicationHelper
 
     @length_stuff = ((data_length).to_f)*100
     @compliance_sum = compliance_sum
-    @compliance_percentage = ((compliance_sum / (data_length).to_f)*100)
+    @compliance_percentage = ((compliance_sum / (data_length).to_f)*100).round(2)
 
     if @compliance_percentage>60 && @compliance_percentage<80
       @compliance_message = '<h3>Getting there, keep going!</h3>'.html_safe
