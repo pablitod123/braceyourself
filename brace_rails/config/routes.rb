@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations"}
-  resources :doctors
+  resources :doctors do 
+    resources :patients
+  end
   resources :patients
   resources :parents
   resources :incentives
