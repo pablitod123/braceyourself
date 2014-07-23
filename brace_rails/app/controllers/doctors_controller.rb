@@ -20,7 +20,7 @@ class DoctorsController < ApplicationController
   # end
 
 	def showpatient
-	@thispatient = User.find(Patient.find(params[:id]).user_id)
+	@thispatient = User.find(Patient.find(params[:patient_id]).user_id)
 	end 
 
 end
