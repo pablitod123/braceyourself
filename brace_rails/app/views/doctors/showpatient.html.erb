@@ -1,4 +1,4 @@
-<h1><%= @thispatient.fname %></h1>
+<h1><%= @thispatient.fname @thispatient.lname%></h1>
 
 <%= link_to 'Back to Patient List', '/doctors/' + params[:id].to_s %><br>
 <style>
@@ -23,13 +23,28 @@ rect.background {
  
 </style>
 <body>
-<p id="p">Month</p>
-<div class='chart'>
-<div id='chart'></div>
+<div id="p"></div>
+
+
+<div class="charts">
+<h2> Position Goal </h2>
+<div id='pos_chart'></div>
+<h2> Force Goal </h2>
+<div id='force_chart'></div>
 </div>
 
+<div id="buttons">
+<input name="updateButton" type="button" value="One day view" onclick="updateData()" />
+<input name="updateButton" type="button" value="Reset" onclick="resetData()" />
+</div>
+
+<div id="drilldown"></div>
+
 <script>
- 
+resetData();
+function resetData(){
+d3.select("#drilldown").html('');
+
 var margin = {top: 0, right: 120, bottom: 0, left: 120},
     width = 1200 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
@@ -52,7 +67,7 @@ var xAxis = d3.svg.axis()
     .scale(x)
     .orient("top");
  
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#drilldown").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -78,37 +93,59 @@ d3.json("/readme.json", function(error, root) {
   down(root, 0);
 });
 
-if (typeof percent === 'undefined') {
-  var percent =20.0;
-}
+// if (typeof percent === 'undefined') {
+//   var percent =20.0;
+// }
 
 function blah(num) {
    document.getElementById("p").innerHTML = num;
-   yay(num);
+   get_gauge_data(num);
 }
 
-function yay(num) {
-  if (num == 1) {
-    chart.unload(['data']); 
-    chart.load({
+function get_gauge_data(num) {
+  if (num == "allmonths") {
+    <% progress_bar("month", params[:patient_id]) %>
+    pos_chart.unload(['data']); 
+    pos_chart.load({
       columns: [
-        ['data', 10.0]
+        ['data', <%= @position_percentage %>]
+      ]
+    });
+    force_chart.unload(['data']); 
+    force_chart.load({
+      columns: [
+        ['data', <%= @force_percentage %>]
       ]
     });
   };
-  if (num == 2) {
-    chart.unload(['data']); 
-    chart.load({
+
+  if (num == "month") {
+    <% progress_bar("month", params[:patient_id]) %>
+    pos_chart.unload(['data']); 
+    pos_chart.load({
       columns: [
-        ['data', 20.0]
+        ['data', <%= @position_percentage %>]
+      ]
+    });
+    force_chart.unload(['data']); 
+    force_chart.load({
+      columns: [
+        ['data', <%= @force_percentage %>]
       ]
     });
   };
-  if (num == 3) {
-    chart.unload(['data']); 
-    chart.load({
+  if (num == "week") {
+    <% progress_bar("week", params[:patient_id]) %>
+    pos_chart.unload(['data']); 
+    pos_chart.load({
       columns: [
-        ['data', 30.0]
+        ['data', <%= @position_percentage %>]
+      ]
+    });
+    force_chart.unload(['data']); 
+    force_chart.load({
+      columns: [
+        ['data', <%= @force_percentage %>]
       ]
     });
   };
@@ -184,15 +221,15 @@ function down(d, i) {
 
   var c = d.children.length
   if (c == 5) {
-    blah(1);
+    blah('allmonths');
   }
 
   if (c == 4) {
-    blah(2);
+    blah('month');
   }
 
   if (c == 7) {
-    blah(3);
+    blah('week');
   }
 }
  
@@ -263,11 +300,11 @@ function up(d) {
 
   var c = d.children.length
   if (c == 4) {
-    blah(1);
+    blah("allmonths");
   }
 
   if (c == 7) {
-    blah(2);
+    blah("month");
   }
 }
  
@@ -306,13 +343,19 @@ function stack(i) {
   };
 }
 
-var chart = c3.generate({
+};
+
+var pos_chart = c3.generate({
     data: {
         columns: [
-            ['data', percent]
+            ['data', 93]
         ],
         type: 'gauge'
     },
+    tooltip: {
+        show: false
+    },
+    bindto: '#pos_chart',
     gauge: {
 //        label: {
 //            format: function(value, ratio) {
@@ -334,6 +377,125 @@ var chart = c3.generate({
         }
     }
 });
+
+var force_chart = c3.generate({
+    data: {
+        columns: [
+            ['data', 91]
+        ],
+        type: 'gauge'
+    },
+    tooltip: {
+        show: false
+    },
+    bindto: '#force_chart',
+    gauge: {
+//        label: {
+//            format: function(value, ratio) {
+//                return value;
+//            },
+//            show: false // to turn off the min/max labels.
+//        },
+//    min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
+//    max: 100, // 100 is default
+//    units: ' %',
+//    width: 39 // for adjusting arc thickness
+    },
+    color: {
+        pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
+        threshold: {
+//            unit: 'value', // percentage is default
+//            max: 200, // 100 is default
+            values: [30, 60, 90, 100]
+        }
+    }
+});
+
+function updateData() {
+
+// document.getElementById(#drilldown).innerHTML = "";
+d3.select("#drilldown").html('');
+
+var margin = {top: 30, right: 20, bottom: 30, left: 50},
+    width = 1200 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+// Parse the date / time
+var format = d3.time.format("%a %b %d %Y %H:%M:%S GMT%Z (EDT)").parse;
+
+// Set the ranges
+var x = d3.time.scale().range([0, width]);
+var y = d3.scale.linear().range([height, 0]);
+
+// Define the axes
+var xAxis = d3.svg.axis().scale(x)
+    .orient("bottom").ticks(8);
+
+var yAxis = d3.svg.axis().scale(y)
+    .orient("left").ticks(5);
+
+// Define the line
+var valueline = d3.svg.line()
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.Position); });
+    
+// Adds the svg canvas
+var svg = d3.select("#drilldown")
+    .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform", 
+              "translate(" + margin.left + "," + margin.top + ")");
+
+// Get the data
+d3.csv("/day1.csv", function(error, data) {
+    data.forEach(function(d) {
+        d.date = format(d.date);
+        d.Position = +d.Position;
+    });
+
+    var xAxis1d = d3.svg.axis().scale(x)
+    .orient("bottom").ticks(16);
+
+    var yAxis1d = d3.svg.axis().scale(y)
+    .orient("left").ticks(5);
+
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d) { return d.date; }));
+    y.domain(d3.extent(data, function(d) { return d.Position; }));
+
+    // Add the valueline path.
+    svg.append("path")
+        .attr("class", "line")
+        .attr("d", valueline(data));
+
+    // Add the X Axis
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis1d);
+
+    // Add the Y Axis
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis1d);
+
+});
+    <% progress_bar("day", params[:patient_id]) %>
+    pos_chart.unload(['data']); 
+    pos_chart.load({
+      columns: [
+        ['data', <%= @position_percentage %>]
+      ]
+    });
+    force_chart.unload(['data']); 
+    force_chart.load({
+      columns: [
+        ['data', <%= @force_percentage %>]
+      ]
+    });
+}
 
 
 
