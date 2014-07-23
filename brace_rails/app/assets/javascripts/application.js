@@ -16,5 +16,6 @@
 //= require jquery-ui/autocomplete
 //= require turbolinks
 //= require_tree .
-
+//= require modernizr
+//= require gumby
 //= require gritter
