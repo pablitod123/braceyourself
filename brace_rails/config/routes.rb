@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations"}
-  resources :doctors
+  resources :doctors do 
+    resources :patients
+  end
   resources :patients
   resources :parents
   resources :incentives
@@ -8,7 +10,7 @@ Rails.application.routes.draw do
     get :autocomplete_user_name, :on => :collection
   end
 
-   get 'doctors/:id/patients/:patient_id' => 'doctors#showpatient', as: 'show_patient_path'
+   # get 'doctors/:id/patients/:patient_id' => 'doctors#showpatient', as: 'show_patient_path'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

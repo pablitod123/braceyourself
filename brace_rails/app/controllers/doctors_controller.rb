@@ -19,8 +19,8 @@ class DoctorsController < ApplicationController
   #     @users = User.all.order('created_at DESC')
   # end
 
-	def showpatient
-	@thispatient = User.find(Patient.find(params[:patient_id]).user_id)
-	end 
+	# def showpatient
+	# @thispatient = User.find(Patient.find(params[:patient_id]).user_id)
+	# end 
 
 end

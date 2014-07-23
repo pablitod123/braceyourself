@@ -18,16 +18,6 @@
  *= require gumby
  */
 
-h1, h2, h3, h4, h5, p {
-  letter-spacing: 0em;
-}
-
-html, button, input, select, textarea,
-.pure-g [class *= "pure-u"] {
-    font-family: Arial;
-    font-family: Georgia, Times, "Times New Roman", serif;
-}
-
 .align_center {
   text-align: center;
   margin: auto;
@@ -276,8 +266,6 @@ html, button, input, select, textarea,
 /*Start Actual Pages*/
 
 .signin {
-  background-color: #3366FF;
-  color: white;
   padding:10px;
   margin:5px;
   text-align: center;
@@ -296,4 +284,9 @@ html, button, input, select, textarea,
   border: 2px solid black;
   border-radius: 5px;
   padding:10px;
+}
+
+.remember_me {
+  font-size: 16px;
+  vertical-align: auto;
 }
