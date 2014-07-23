@@ -40,7 +40,7 @@
   <% @users.each do |user| %>
   <% patient = Patient.find_by(user_id: user.id) %>
   <% if patient != nil %>
-  <%= link_to user.fname + " " + user.lname, [@doctor, patient]%><br>
+  <%= link_to user.fname + " " + user.lname, '/doctors/' + params[:id].to_s + '/patients/' + patient.id.to_s%><br>
   <% end %>
   <% end %>
   </div>
@@ -58,7 +58,7 @@
   <div class="centered two columns align_center">
     <% @allpatients.each do |patient| %>
     <% user = User.find(patient.user_id) %>
-    <%= link_to user.fname + " " + user.lname, [@doctor, patient] %>
+    <%= link_to user.fname + " " + user.lname, '/doctors/' + params[:id].to_s + '/patients/' + patient.id.to_s%>
     <% end %>
   </div>
 </div>
