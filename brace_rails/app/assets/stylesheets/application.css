@@ -24,15 +24,23 @@
 #pos_chart {
   width: 50%;
   height: 250px;
-  margin-bottom: -100px;
-  float: left;
+/*  margin-bottom: -100px;*/
+/*  float: left;*/
 }
 
 #force_chart {
   width: 50%;
   height: 250px;
-  margin-bottom: -100px;
-  float: right;
+/*  margin-bottom: -100px;*/
+/*  float: right;*/
+}
+
+#drilldown {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
 }
 /*-- Chart --*/
 
