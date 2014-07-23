@@ -18,12 +18,19 @@
  *= require gumby
  */
 
+
 h1, h2, h3, h4, h5, p {
   letter-spacing: 0em;
 }
 
 .buttoncont {
   text-align: center;
+}
+
+.align_center {
+  text-align: center;
+  margin: auto;
+
 }
 
 .charts {
@@ -278,8 +285,6 @@ h1, h2, h3, h4, h5, p {
 /*Start Actual Pages*/
 
 .signin {
-  background-color: #3366FF;
-  color: white;
   padding:10px;
   margin:5px;
   text-align: center;
@@ -298,4 +303,9 @@ h1, h2, h3, h4, h5, p {
   border: 2px solid black;
   border-radius: 5px;
   padding:10px;
+}
+
+.remember_me {
+  font-size: 16px;
+  vertical-align: auto;
 }
