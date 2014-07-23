@@ -268,3 +268,16 @@
   border-radius:10px;
   font-size: 30px;
 }
+
+#patient_name {
+  text-align: center;
+  font-size: 30px;
+}
+
+#back_to_list {
+  display:inline;
+  font-size: 30px;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding:10px;
+}
