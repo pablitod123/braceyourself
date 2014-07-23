@@ -6,7 +6,7 @@ var async = require('async'),
     fs = require('fs'),
     _ = require('underscore');
 
-var stream = fs.createReadStream('eachday.csv');
+var stream = fs.createReadStream('every1day6.csv');
 var force_final,
     position_final,
     date_final;
@@ -81,7 +81,7 @@ var processData = function(file) {
 
 
 
-    fs.writeFile('eachweek.csv', csvContent, function(err) {
+    fs.writeFile('every1week6.csv', csvContent, function(err) {
       if (err) throw err;
       console.log('week csv file saved'.green);
   });

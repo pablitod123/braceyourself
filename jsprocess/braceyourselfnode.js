@@ -6,7 +6,7 @@ var async = require('async'),
     fs = require('fs'),
     _ = require('underscore');
 
-var stream = fs.createReadStream('30days.csv');
+var stream = fs.createReadStream('patient6_30day.csv');
 var force_final,
     position_final,
     date_final;
@@ -78,7 +78,7 @@ var processData = function(file) {
 
 
 
-    fs.writeFile('every6minutes.csv', csvContent, function(err) {
+    fs.writeFile('every6minutes6.csv', csvContent, function(err) {
       if (err) throw err;
       console.log('csv file saved'.green);
   });
@@ -93,7 +93,7 @@ var variableParse = function(constant) {
 
   var personalinfo = "personid,forcezero,forceref,positionref" + "\n" + [person_id,force_zero,force_ref, position_ref]; 
 
-   fs.writeFile('patientinfo.csv',personalinfo, function(err) {
+   fs.writeFile('patient6info.csv',personalinfo, function(err) {
       if (err) throw err;
       console.log('personinfo file saved'.green);
   });
