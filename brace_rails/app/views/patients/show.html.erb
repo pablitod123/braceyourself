@@ -22,6 +22,7 @@ Current Incentives:<br>
 <% @incentives.each do |incentive| %>
 <%= incentive.title %>: Each <%= incentive.frequency%> if compliance is <%=incentive.compliance%>% get $<%=incentive.reward%>.<br>
 <% end %><br>
+<h2>Compliance: <div id="patient_compliance"><%=@compliance_percentage%></div>%</h2><br><br>
 <button onclick="show_day()">Today</button>
 <button onclick="show_week()">This Week</button>
 <button onclick="show_month()">This Month</button>
@@ -43,6 +44,7 @@ function show_day() {
         ['data', <%= @force_percentage %>]
       ]
     });
+    document.getElementById("patient_compliance").innerHTML = <%=@compliance_percentage%>;
 };
 function show_week() {
   <% progress_bar('week', params[:id]) %>
@@ -58,6 +60,7 @@ function show_week() {
         ['data', <%= @force_percentage %>]
       ]
     });
+    document.getElementById("patient_compliance").innerHTML = <%=@compliance_percentage%>;
 };
 function show_month() {
   <% progress_bar("month", params[:id]) %>
@@ -73,6 +76,7 @@ function show_month() {
         ['data', <%= @force_percentage %>]
       ]
     });
+    document.getElementById("patient_compliance").innerHTML = <%=@compliance_percentage%>;
 };
 </script>
 
