@@ -38,7 +38,7 @@
 #compliance_container {
   vertical-align: middle;
   margin: auto;
-  width: 30%;
+ /* width: 30%;*/
   text-align: center;
 }
 
@@ -275,7 +275,7 @@
 }
 
 #back_to_list {
-  display:inline;
+  display:inline-block;
   font-size: 30px;
   border: 2px solid black;
   border-radius: 5px;
