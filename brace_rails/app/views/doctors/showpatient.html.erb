@@ -1,4 +1,6 @@
-<h1><%= @thispatient.fname %> <%= @thispatient.lname%></h1>
+<div id="patient_name">
+  <h1><%= @thispatient.fname %> <%= @thispatient.lname%></h1>
+</div>
 
 <%= link_to 'Back to Patient List', '/doctors/' + params[:id].to_s %><br>
 <style>
@@ -24,6 +26,9 @@ rect.background {
 </style>
 <body>
 <div id="p"></div>
+<div id="compliance_container">
+<h1>Compliance Rate:</h1><div id="compliance"></div>
+</div>
 
 
 <div class="charts">
@@ -104,7 +109,7 @@ function blah(num) {
 
 function get_gauge_data(num) {
   if (num == "allmonths") {
-    <% progress_bar("month", params[:patient_id]) %>
+    <% progress_bar("allmonths", params[:patient_id]) %>
     pos_chart.unload(['data']); 
     pos_chart.load({
       columns: [
@@ -117,6 +122,7 @@ function get_gauge_data(num) {
         ['data', <%= @force_percentage %>]
       ]
     });
+    document.getElementById("compliance").innerHTML = <%=@compliance_percentage%>;
   };
 
   if (num == "month") {
@@ -133,6 +139,7 @@ function get_gauge_data(num) {
         ['data', <%= @force_percentage %>]
       ]
     });
+    document.getElementById("compliance").innerHTML = <%=@compliance_percentage%>;
   };
   if (num == "week") {
     <% progress_bar("week", params[:patient_id]) %>
@@ -148,6 +155,7 @@ function get_gauge_data(num) {
         ['data', <%= @force_percentage %>]
       ]
     });
+    document.getElementById("compliance").innerHTML = <%=@compliance_percentage%>;
   };
 }
  
@@ -495,6 +503,7 @@ d3.csv("/day1.csv", function(error, data) {
         ['data', <%= @force_percentage %>]
       ]
     });
+    document.getElementById("compliance").innerHTML = <%=@compliance_percentage%>;
 }
 
 
