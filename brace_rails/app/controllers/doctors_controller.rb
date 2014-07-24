@@ -12,6 +12,11 @@ class DoctorsController < ApplicationController
     end
   end
 
+  def loadsuggestions
+    @suggestions = User.select(:fname)
+    render json: @suggestions
+  end
+
 
   # if params[:search]
   #     @users = User.search(params[:search]).order("created_at DESC")
