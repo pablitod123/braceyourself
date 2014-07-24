@@ -1,7 +1,5 @@
-<!-- <% @allpatients.each do |patient| %>
-<% user = User.find(patient.user_id) %>
-<script><%= add_gritter(user.fname + " " + user.lname + " is not wearing the brace properly", :title => "Patient update", :time => 8000, :sticky => true, :image => :warning) %></script>
-<% end %> -->
+<% user = User.find(@allpatients.first.user_id) %>
+<script><%= add_gritter(user.fname + " " + user.lname + " is not wearing the brace properly", :title => "Patient update", :time => 8000, :sticky => false, :image => :warning) %></script>
 <!-- need to fix the erb that shows doctor name -->
 
 <div class="row">
@@ -14,7 +12,7 @@
     <%= form_tag(doctor_path, :method => "get", id: "search-form") do %>
         <div class="field">
           <div class="xxwide text input">
-          <%= text_field_tag :search, params[:search], placeholder: "search by first and/or last name" :class=>"typeahead" %>
+          <%= text_field_tag :search, params[:search], placeholder: "search by first and/or last name", :class=>"typeahead" %>
           </div>
         </div>
   </div>
