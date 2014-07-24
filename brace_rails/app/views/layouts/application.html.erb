@@ -20,11 +20,32 @@
 
 </head>
 <body>
+<div class="navbar pretty" id="nav1">
+  <div class = "row">
+  <a class="toggle" gumby-trigger="#nav1 > ul" href="#"><i class="icon-menu"></i></a>
+  <h1 class="one columns logo">
+    <a href="#">
+      <img src="/spinelogo.png" gumby-retina />
+    </a>
+  </h1>
+  <div class="two columns">
+	  	<% if user_signed_in? %>
+	  	<p id = "hiperson">Hi, <%= current_user.fname %> !</p>
+	  	<% end %>
+  </div>
+  <h1 class="seven columns"></h1>
+  <ul class="two columns">
+    <li>
+    <% if user_signed_in? %>
+	<%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+	<% end %>
+	</li>
+  </ul>
+  </div>
+</div>
 
 <%= yield %><br>
-<% if user_signed_in? %>
-<%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-<% end %>
+
 <br>
 <br>
 <br>
