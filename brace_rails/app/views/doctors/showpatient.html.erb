@@ -29,9 +29,13 @@ rect.background {
   </div>
 </div>
 
-  <div id = "back_to_list" class = "medium primary btn">
-      <%= link_to 'Back to Patient List', '/doctors/' + params[:id].to_s %>
-  </div>
+    <div id = "back_to_list" class = "large primary btn">
+        <%= link_to 'Back to Patient List', '/doctors/' + params[:id].to_s %>
+    </div>
+    <div id = "editsettings" class = "large warning btn">
+          <input name="updateButton" type="button" value="Edit Prescription" />
+    </div>
+
 
  <div class= "row">
     <div class = "twelve columns" id="compliance_container">
@@ -61,7 +65,7 @@ rect.background {
       <div class = "medium primary btn">
         <input name="updateButton" type="button" value="One day view" onclick="updateData()" />
       </div>
-      <div class = "medium primary btn">
+      <div class = "medium secondary btn">
         <input name="updateButton" type="button" value="Reset" onclick="resetData()" />
       </div>
     </div>

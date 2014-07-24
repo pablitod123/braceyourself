@@ -324,6 +324,15 @@ body {
   margin-top:-6%;
 }
 
+#editsettings {
+  margin-right:2%;
+  border-radius: 5px;
+  padding:10px;
+  float:right;
+  margin-top:-6%;
+}
+
+
 .remember_me {
   font-size: 16px;
   vertical-align: auto;
