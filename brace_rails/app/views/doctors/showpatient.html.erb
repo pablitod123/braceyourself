@@ -1,7 +1,7 @@
 <style>
  
 text {
-  font: 14px Arial;
+  font: 22px Arial;
 }
  
 rect.background {
@@ -38,10 +38,13 @@ rect.background {
 
 
  <div class= "row">
+  <div class = "compcont">
     <div class = "twelve columns" id="compliance_container">
-      <h2>Compliance Rate:</h2><div id="compliance"></div>
+      <h2>Compliance Rate:</h2>
+      <div id="compliance"></div>
     </div>
   </div>
+</div>
 
 <div class = "c3container">
   <div class = "row">
@@ -49,7 +52,7 @@ rect.background {
       <div id='pos_chart'></div>
       <h2> Position Goal </h2>
     </div>
-    <div class = "four columns"></div>
+    <div class = "four columns"><div id="viewdesc"></div></div>
     <div class = "four columns">
       <div id='force_chart'></div>
       <h2> Force Goal </h2>
@@ -61,7 +64,6 @@ rect.background {
 <div class = "row">
   <div class = "buttoncont">
     <div class = "twelve columns">
-    <div id="viewdesc"></div>
       <div class = "medium primary btn">
         <input name="updateButton" type="button" value="One day view" onclick="updateData()" />
       </div>
@@ -84,7 +86,7 @@ resetData();
 function resetData(){
 d3.select("#drilldown").html('');
 
-var margin = {top: 20, right: 60, bottom: 0, left: 120},
+var margin = {top: 30, right: 60, bottom: 0, left: 120},
     width = 1200 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
  
@@ -501,7 +503,7 @@ d3.csv("/every6minutes5.csv", function(error, data) {
     });
 
     var xAxis1d = d3.svg.axis().scale(x)
-    .orient("bottom").ticks(16);
+    .orient("bottom").ticks(10);
 
     var yAxis1d = d3.svg.axis().scale(y)
     .orient("left").ticks(5);
