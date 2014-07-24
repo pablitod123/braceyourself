@@ -20,8 +20,9 @@ fs.readFile('day.csv', function(err, file) {
       // Extend basic object with date-specific properties
       return _.extend(obj, {
         dayOfWeek: obj.date.day(),
-        dayName:   obj.date.format('dddd'),
-        week:      obj.date.week(),
+        fullDay:   obj.date.format('dddd'),
+        name:      obj.date.week(),
+        parent:    obj.date.week(),
         month:     obj.date.month(),
         monthName: obj.date.format('MMMM')
       });
@@ -71,20 +72,14 @@ fs.readFile('day.csv', function(err, file) {
                 ];
 
     // Goal of transformation
-    // var r = { 
-    //           {
-    //           "name": 'June',
-    //           "children": [ 
-    //               { '29': [Object], '30': [Object], '31': [Object] } 
-    //             ]
-    //           },
-    //           { 
-    //           "name": 'July', 
-    //           "children": [
-    //               { '31': [Object], '32': [Object], '33': [Object] } 
-    //             ]
-    //           } 
-    //         };
+    var data = [
+ { "name" : "ABC", "parent":"DEF", "relation": "ghi", "depth": 1 },
+ { "name" : "DEF", "parent":"null", "relation": "null", "depth": 0 },
+ { "name" : "new_name", "parent":"ABC", "relation": "rel", "depth": 2 },
+ { "name" : "new_name2", "parent":"ABC", "relation": "foo", "depth": 0 },
+ { "name" : "Foo", "parent":"DEF", "relation": "rel", "depth": 0 },
+ { "name" : "Bar", "parent":"null", "relation": "rel", "depth": 0 }
+];
 
 
     // Array of functions to perform the transformation from
@@ -94,9 +89,9 @@ fs.readFile('day.csv', function(err, file) {
                  // function(num) { return _.range(0, num + 100, 100); }];
 
     // Log for debugging
-    console.log(nestedMap(q, funcs));
+    // console.log(nestedMap(q, funcs));
 
-    testresult = nestedMap(q, funcs);
+    // testresult = nestedMap(q, funcs);
 
     // Create an Underscore chain from 'parsed' and apply
     // the chain of transformations, pulling it out of the
@@ -104,15 +99,17 @@ fs.readFile('day.csv', function(err, file) {
     var result = _.chain(parsed)
       .rest()
       .map(addNewProps)
-      .groupBy('month')
-      .map(groupByWeekInMonth)
+      // .groupBy('month')
+      // .map(groupByWeekInMonth)
       .value();
 
-    // console.log(result)
+    console.log(result);
+      // console.log(result[0])
 
-    // fs.writeFile("transformedtest.json", JSON.stringify(testresult), function(err) {
-    //   console.log(err);
-    // })
+
+    fs.writeFile("transformed.json", JSON.stringify(result), function(err) {
+      console.log(err);
+    })
 
     // Uncomment for debug.
     //console.log(result);

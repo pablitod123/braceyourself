@@ -316,6 +316,13 @@ body {
   margin-bottom:9%;
 }
 
+#patient_name_smaller {
+  font-size: 70px;
+  font-style:bold;
+  margin-top:10px;
+  margin-bottom:9%;
+}
+
 #back_to_list {
   margin-left:2%;
   border-radius: 5px;
@@ -360,3 +367,14 @@ body {
   padding:2px;
 }
 
+#incentivetitles {
+  font-style:bold;
+  font-size:20px;
+  margin:5px;
+}
+
+#incentivetext {
+  font-style:bold;
+  font-size:10px;
+  margin:5px;
+}
