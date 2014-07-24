@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="style.css" /> -->
 <style>
 text {
-  font: 18px Arial;
+  font: 22px Arial;
 }
  
 rect.background {
@@ -64,7 +64,7 @@ rect.background {
       <div id='pos_chart'></div>
       <h2> Position Goal </h2>
     </div>
-    <div class = "four columns"></div>
+    <div class = "four columns"><div id="viewdesc">Day View</div></div>
     <div class = "four columns">
       <div id='force_chart'></div>
       <h2> Force Goal </h2>
@@ -166,7 +166,7 @@ var force_chart = c3.generate({
 
 d3.select("#drilldown").html('');
 
-var margin = {top: 20, right: 60, bottom: 0, left: 120},
+var margin = {top: 30, right: 60, bottom: 0, left: 120},
     width = 1200 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
  
@@ -542,7 +542,7 @@ function updateData() {
 // document.getElementById(#drilldown).innerHTML = "";
 d3.select("#drilldown").html('');
 
-var margin = {top: 30, right: 20, bottom: 30, left: 50},
+var margin = {top: 0, right: 60, bottom: 0, left: 120},
     width = 1200 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
@@ -582,7 +582,7 @@ d3.csv("/every6minutes5.csv", function(error, data) {
     });
 
     var xAxis1d = d3.svg.axis().scale(x)
-    .orient("bottom").ticks(16);
+    .orient("bottom").ticks(10);
 
     var yAxis1d = d3.svg.axis().scale(y)
     .orient("left").ticks(5);
