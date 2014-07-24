@@ -1,11 +1,3 @@
-<div id="patient_name">
-  <h1><%= @thispatient.fname %> <%= @thispatient.lname%></h1>
-</div>
-
-<div id = "back_to_list">
-<%= link_to 'Back to Patient List', '/doctors/' + params[:id].to_s %><br>
-</div>
-
 <style>
  
 text {
@@ -27,14 +19,23 @@ rect.background {
 }
  
 </style>
+
 <body>
+<div class = "row">
+  <div class = "centered six columns">
+    <div id="patient_name">
+      <%= @thispatient.fname %> <%= @thispatient.lname%>
+    </div>
+  </div>
+</div>
 
-
-
+  <div id = "back_to_list" class = "medium primary btn">
+      <%= link_to 'Back to Patient List', '/doctors/' + params[:id].to_s %>
+  </div>
 
  <div class= "row">
     <div class = "twelve columns" id="compliance_container">
-      <h1>Compliance Rate:</h1><div id="compliance"></div>
+      <h2>Compliance Rate:</h2><div id="compliance"></div>
     </div>
   </div>
 

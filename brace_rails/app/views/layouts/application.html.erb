@@ -24,13 +24,19 @@
   <div class = "row">
   <a class="toggle" gumby-trigger="#nav1 > ul" href="#"><i class="icon-menu"></i></a>
   <h1 class="one columns logo">
-    <a href="#">
+    <a href="/">
+      <div id = "reallogo">
       <img src="/spinelogo.png" gumby-retina />
+      </div>
     </a>
   </h1>
   <div class="two columns">
 	  	<% if user_signed_in? %>
-	  	<p id = "hiperson">Hi, <%= current_user.fname %> !</p>
+         <% if current_user.role === "Doctor" %>
+	  	      <p id = "hiperson">Hi, Dr. <%= current_user.fname %> !</p>
+          <% else %>
+            <p id = "hiperson">Hi, <%= current_user.fname %> !</p>
+          <% end %>
 	  	<% end %>
   </div>
   <h1 class="seven columns"></h1>

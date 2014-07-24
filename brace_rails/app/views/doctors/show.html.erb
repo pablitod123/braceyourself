@@ -14,7 +14,7 @@
     <%= form_tag(doctor_path, :method => "get", id: "search-form") do %>
         <div class="field">
           <div class="xxwide text input">
-          <%= text_field_tag :search, params[:search], placeholder: "search by first and/or last name" :class=>"typeahead" %>
+          <%= text_field_tag :search, params[:search], placeholder: "search by first and/or last name", :class=>"typeahead" %>
           </div>
         </div>
   </div>
