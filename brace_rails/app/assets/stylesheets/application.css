@@ -356,6 +356,18 @@ body {
   font-size:20px;
 }
 
+tr:nth-of-type(odd) {
+  background-color: #cfd6d8;
+}
+
+tr:nth-of-type(even) {
+}
+
+td.tr#tr {
+  text-align: center;
+  padding: 3px 3px 3px 3px;
+}
+
 /*.logo {
   background-color: red;
 }*/
@@ -377,4 +389,4 @@ body {
   font-style:bold;
   font-size:10px;
   margin:5px;
-}
+} 

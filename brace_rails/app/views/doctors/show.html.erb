@@ -12,7 +12,7 @@
     <%= form_tag(doctor_path, :method => "get", id: "search-form") do %>
         <div class="field">
           <div class="xxwide text input">
-          <%= text_field_tag :search, params[:search], placeholder: "search by first and/or last name", :class=>"typeahead" %>
+          <%= text_field_tag :search, params[:search], placeholder: "search by first and/or last name"%>
           </div>
         </div>
   </div>
@@ -29,13 +29,22 @@
 <div class="row">
   <div class="centered three columns align_center results">
   <h2>Results:</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="one columns"></div>
+  <div class="three columns centered">
+  <table>
   <% @users.each do |user| %>
   <% patient = Patient.find_by(user_id: user.id) %>
   <% if patient != nil %>
-  <%= link_to user.fname + " " + user.lname, '/doctors/' + params[:id].to_s + '/patients/' + patient.id.to_s%><br>
+  <tr><td class="tr" id="tr"><%= link_to user.fname + " " + user.lname, '/doctors/' + params[:id].to_s + '/patients/' + patient.id.to_s%><br>
   <% end %>
+  </td></tr>
   <% end %>
+  </table>
   </div>
+  <div class="three columns"></div>
 </div>
 <br>
 <br>
@@ -48,10 +57,13 @@
 </div>
 <div class="row">
   <div class="centered two columns align_center">
+  <table>
     <% @allpatients.each do |patient| %>
-    <% user = User.find(patient.user_id) %>
+    <tr><td class="tr" id="tr"><% user = User.find(patient.user_id) %>
     <%= link_to user.fname + " " + user.lname, '/doctors/' + params[:id].to_s + '/patients/' + patient.id.to_s%>
+    </td></tr>
     <% end %>
+  </table>
   </div>
 </div>
 
