@@ -322,3 +322,15 @@ h1, h2, h3, h4, h5, p {
   font-size:20px;
 }
 
+tr:nth-of-type(odd) {
+  background-color: #cfd6d8;
+}
+
+tr:nth-of-type(even) {
+}
+
+td.tr#tr {
+  text-align: center;
+  padding: 3px 3px 3px 3px;
+}
+
