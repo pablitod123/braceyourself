@@ -20,12 +20,11 @@
     <%= form_tag(doctor_path, :method => "get", id: "search-form") do %>
         <div class="field">
           <div class="xxwide text input">
-          <%= text_field_tag :search, params[:search], placeholder: "search by first and/or last name" %>
+          <%= text_field_tag :search, params[:search], placeholder: "search by first and/or last name" :class=>"typeahead" %>
           </div>
         </div>
   </div>
 </div>
-<% end %>
 <div class="row">
   <div class="centered five columns align_center">
     <div class="adjoined medium metro rounded btn default">
@@ -33,6 +32,7 @@
     </div>
   </div>
 </div>
+<% end %>
 <% if params[:search] != nil && params[:search] != "" %>
 <div class="row">
   <div class="centered three columns align_center results">
