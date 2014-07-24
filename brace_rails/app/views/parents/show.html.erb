@@ -219,6 +219,15 @@ d3.json("/readme.json", function(error, root) {
 // }
 
 function blah(num) {
+   if (num == "allmonths") {
+    document.getElementById("viewdesc").innerHTML = "All Months";
+   }
+   else if (num == "month") {
+    document.getElementById("viewdesc").innerHTML = "Month View";
+   }
+   else if (num == "week") {
+    document.getElementById("viewdesc").innerHTML = "Week View";
+   }
    get_gauge_data(num);
 }
 
@@ -238,7 +247,6 @@ function get_gauge_data(num) {
       ]
     });
     document.getElementById("compliance").innerHTML = <%=@compliance_percentage%>;
-    document.getElementById("viewdesc").innerHTML = "All Months View";
   };
 
   if (num == "month") {
@@ -539,6 +547,8 @@ var force_chart = c3.generate({
 
 function updateData() {
 
+
+document.getElementById("viewdesc").innerHTML = "Day View";
 // document.getElementById(#drilldown).innerHTML = "";
 d3.select("#drilldown").html('');
 
