@@ -85,19 +85,16 @@ var structureTransforms = {
     return _.map(weeksArray, function(week) {
       return {
         name: 'Week ' + week[0].week,
-        children: q(week)
+        children: _.map(week, q)
       };
     });
   },
 
-  aliasDayName: function(week, q) {
-    week.name = week.dayName;
-    return q(week);
-  },
-
-  aliasPosition: function(week, q) {
-    week.size = week.position;
-    return q(week);
+  aliasKeys: function(week, q) {
+    return q(_.extend(week, {
+      name: week.dayName,
+      size: week.position
+    }));
   }
 };
 
@@ -105,8 +102,7 @@ var pipeline = [ structureTransforms.setupTopLevelData,
                  structureTransforms.mapMonths,
                  structureTransforms.transformWeekObjects,
                  structureTransforms.createWeekStructure,
-                 structureTransforms.aliasDayName,
-                 structureTransforms.aliasPosition ];
+                 structureTransforms.aliasKeys ];
 
 // Asynchronously read file, and parse it, then enter
 // the processing stage
