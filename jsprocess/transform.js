@@ -36,7 +36,7 @@ function groupByWeekInMonth(daysArr, monthNum) {
 
 ///////////////////////////////////////////////////////////////
 // Pipeline functions to transform structured .csv data
-// into format of D3 .json file
+// into format of the D3-ready .json file
 ////////////////////////////////////////////////////////////
 
 function nestedFunctionalMap(struct, fList) {
