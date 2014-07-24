@@ -1,28 +1,31 @@
+<div class= "signin incentivetext">
+
 <%= form_for @incentive do |f| %>
-<div>
-<%= f.label :title %>
+<div class = 'field'>
+Incentive Name
 <%= f.text_field :title, :size=>"50", :placeholder => "ex: Wearing brace every day for a week" %>
 </div>
-<div>
+<div class = 'field'>
 <%= f.label :description %>
 <%= f.text_area :description, :placeholder => "Tell your child more about this incentive!" %>
 </div>
-<div>
-<%= f.label :frequency, "Each" %>
-<%= f.select :frequency, [['day', 'day'], ['week', 'week'], ['month', 'month']]%>
-
-<%= f.label :compliance, "if compliance is %" %>
-<%= f.select :compliance, ((50..100).step(5).map {|i| [i,i] }) %>
-
-<%= f.label :reward, "give "+ User.find(Patient.find_by(parent_id: Parent.find_by(user_id: current_user.id).id).user_id).fname + " $" %>
-
-<%= f.number_field :reward, in: 1.0..20.0, step: 0.5 %>
+Each 
+<div class = 'picker'><%= f.select :frequency, [['day', 'day'], ['week', 'week'], ['month', 'month']]%></div>
+<br>
+if compliance is 
+<div class = 'picker'><%= f.select :compliance, ((50..100).step(5).map {|i| [i,i] }) %></div>
+<br>
+<div class = 'field'>
+give <%= User.find(Patient.find_by(parent_id: Parent.find_by(user_id: current_user.id).id).user_id).fname %>
+<%= f.text_field :reward %></div>
 </div>
 
 <%= f.hidden_field :parent_id, value: Parent.find_by(user_id: current_user.id).id %>
 <%= f.hidden_field :patient_id, value: Patient.find_by(parent_id: Parent.find_by(user_id: current_user.id).id).id %>
-
-<div>
+<br>
+<div class = 'medium btn primary'>
 <%= f.submit %>
 </div>
 <% end %>
+
+</div>

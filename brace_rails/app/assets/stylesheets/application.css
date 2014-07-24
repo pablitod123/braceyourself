@@ -17,8 +17,14 @@
  *= require gritter
  *= require gumby
  */
+/*
+a :visited {
+text-decoration: none;
+}
 
-
+a {
+  text-decoration: none;
+}*/
 
 h1, h2, h3, h4, h5, p {
   letter-spacing: 0em;
@@ -284,27 +290,55 @@ h1, h2, h3, h4, h5, p {
 }
 
 /*Start Actual Pages*/
+body {
+  text-align:center;
+}
 
 .signin {
-  padding:10px;
-  margin:5px;
+  padding:50px;
   text-align: center;
   border-radius:10px;
   font-size: 30px;
+  display:inline-block;
+  border:2px solid gray;
+  -webkit-box-shadow: 0 8px 6px -6px black;
+     -moz-box-shadow: 0 8px 6px -6px black;
+          box-shadow: 0 8px 6px -6px black;
+  margin:2%;
+  background-color: #F8F8F8;
 }
 
+
 #patient_name {
-  text-align: center;
-  font-size: 30px;
+  font-size: 90px;
+  font-style:bold;
+  margin-top:10%;
+  margin-bottom:9%;
+}
+
+#patient_name_smaller {
+  font-size: 70px;
+  font-style:bold;
+  margin-top:10px;
+  margin-bottom:9%;
 }
 
 #back_to_list {
-  display:inline-block;
-  font-size: 20px;
-  border: 2px solid black;
+  margin-left:2%;
   border-radius: 5px;
   padding:10px;
+  float:left;
+  margin-top:-6%;
 }
+
+#editsettings {
+  margin-right:2%;
+  border-radius: 5px;
+  padding:10px;
+  float:right;
+  margin-top:-6%;
+}
+
 
 .remember_me {
   font-size: 16px;
@@ -334,3 +368,25 @@ td.tr#tr {
   padding: 3px 3px 3px 3px;
 }
 
+/*.logo {
+  background-color: red;
+}*/
+
+#reallogo {
+  width:100%;
+  position:absolute;
+  margin: auto;
+  padding:2px;
+}
+
+#incentivetitles {
+  font-style:bold;
+  font-size:20px;
+  margin:5px;
+}
+
+#incentivetext {
+  font-style:bold;
+  font-size:10px;
+  margin:5px;
+} 
