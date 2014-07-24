@@ -6,7 +6,7 @@ var async = require('async'),
     fs = require('fs'),
     _ = require('underscore');
 
-var stream = fs.createReadStream('every6minutes.csv');
+var stream = fs.createReadStream('every6minutes6.csv');
 var force_final,
     position_final,
     date_final;
@@ -81,7 +81,7 @@ var processData = function(file) {
 
 
 
-    fs.writeFile('every1hour.csv', csvContent, function(err) {
+    fs.writeFile('every1hour6.csv', csvContent, function(err) {
       if (err) throw err;
       console.log('hourly csv file saved'.green);
   });
