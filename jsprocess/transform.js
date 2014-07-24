@@ -35,6 +35,40 @@ fs.readFile('day.csv', function(err, file) {
       return obj;
     }
 
+    function nestedFunctionalMap(struct, fList) {
+      function g(struct) {
+        if (_.isEmpty(this.fList)) {
+          return struct;
+        }
+
+        var nextFunc = _.first(this.fList);
+
+        var nextThis = {fList: _.rest(this.fList)};
+
+        return nextFunc(struct, g.bind(nextThis));
+      }
+
+      return g.apply({fList: fList}, [struct]);
+    }
+
+    var f = function(struct, q) { var obj1 = {}; var obj2 = {};
+                              obj1[struct[0]] = struct[0]; obj2[struct[1]] = struct[1];
+                              return [q(obj1), q(obj2) , 3] };
+
+    var g = function(struct, q) { var k = _.keys(struct); struct[k[0]] = struct[k[0]] * 100; return q(struct); };
+
+    console.log(nestedFunctionalMap([1, 2, 3], [f, g]));
+
+
+
+
+
+
+
+
+
+
+
     // Given 'struct' and an array of functions 'fList', recursively
     // applies the first function in fList to struct, doing a
     // deep recursive map on 'struct' if 'struct' is an array
@@ -61,29 +95,29 @@ fs.readFile('day.csv', function(err, file) {
     //          [2, 3, 4],
     //          [3, 4, 5]];
 
-        var q = [ 
-                  { '6': 
-                      { '29': [Object], '30': [Object], '31': [Object] } 
-                  },
-                  { '7': 
-                      { '31': [Object], '32': [Object], '33': [Object] } 
-                  } 
-                ];
+//      var q = [
+//                { '6':
+//                    { '29': [Object], '30': [Object], '31': [Object] }
+//                },
+//                { '7':
+//                    { '31': [Object], '32': [Object], '33': [Object] }
+//                }
+//              ];
 
     // Goal of transformation
-    // var r = { 
+    // var r = {
     //           {
     //           "name": 'June',
-    //           "children": [ 
-    //               { '29': [Object], '30': [Object], '31': [Object] } 
+    //           "children": [
+    //               { '29': [Object], '30': [Object], '31': [Object] }
     //             ]
     //           },
-    //           { 
-    //           "name": 'July', 
+    //           {
+    //           "name": 'July',
     //           "children": [
-    //               { '31': [Object], '32': [Object], '33': [Object] } 
+    //               { '31': [Object], '32': [Object], '33': [Object] }
     //             ]
-    //           } 
+    //           }
     //         };
 
 
@@ -94,9 +128,6 @@ fs.readFile('day.csv', function(err, file) {
                  // function(num) { return _.range(0, num + 100, 100); }];
 
     // Log for debugging
-    console.log(nestedMap(q, funcs));
-
-    testresult = nestedMap(q, funcs);
 
     // Create an Underscore chain from 'parsed' and apply
     // the chain of transformations, pulling it out of the
@@ -108,9 +139,9 @@ fs.readFile('day.csv', function(err, file) {
       .map(groupByWeekInMonth)
       .value();
 
-    // console.log(result)
+    console.log(result);
 
-    // fs.writeFile("transformedtest.json", JSON.stringify(testresult), function(err) {
+    // fs.writeFile("transformedtest.json", JSON.stringify(result), function(err) {
     //   console.log(err);
     // })
 
