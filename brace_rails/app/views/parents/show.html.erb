@@ -208,7 +208,7 @@ svg.append("g")
   .append("line")
     .attr("y1", "100%");
  
-d3.json("/d3_ready.json", function(error, root) {
+d3.json("/d3_ready_6month.json", function(error, root) {
   partition.nodes(root);
   x.domain([0, root.value]).nice();
   down(root, 0);
@@ -354,11 +354,11 @@ function down(d, i) {
   // }
 
   var c = d.children.length
-  if (c == 2) {
+  if (c == 6) {
     blah('allmonths');
   }
 
-  if (c == 4) {
+  if (c == 5) {
     blah('month');
   }
 
@@ -433,7 +433,7 @@ function up(d) {
       .duration(end);
 
   var c = d.children.length
-  if (c == 4) {
+  if (c == 5) {
     blah("allmonths");
   }
 

@@ -2,10 +2,10 @@
   "name": "data",
   "children": [
     {
-      "name": "Month #6",
+      "name": "July",
       "children": [
         {
-          "name": "Week 29",
+          "name": "7/14 - 7/19",
           "children": [
             {
               "force": 221.7067916666667,
@@ -82,7 +82,7 @@
           ]
         },
         {
-          "name": "Week 30",
+          "name": "7/20 - 7/26",
           "children": [
             {
               "force": 548.3212916666668,
@@ -171,7 +171,7 @@
           ]
         },
         {
-          "name": "Week 31",
+          "name": "7/27 - 7/31",
           "children": [
             {
               "force": 644.8952916666667,
@@ -238,10 +238,10 @@
       ]
     },
     {
-      "name": "Month #7",
+      "name": "August",
       "children": [
         {
-          "name": "Week 31",
+          "name": "8/1-8/2",
           "children": [
             {
               "force": 482.1767916666666,
@@ -270,7 +270,7 @@
           ]
         },
         {
-          "name": "Week 32",
+          "name": "8/3-8/9",
           "children": [
             {
               "force": 506.5014166666665,
@@ -359,7 +359,7 @@
           ]
         },
         {
-          "name": "Week 33",
+          "name": "8/10-8/12",
           "children": [
             {
               "force": 597.4657916666667,
@@ -400,6 +400,6 @@
           ]
         }
       ]
-    }
+    },
   ]
 }

@@ -2,121 +2,10 @@
   "name": "data",
   "children": [
     {
-      "name": "Month #0",
+      "name": "July",
       "children": [
         {
-          "name": "Week 1",
-          "children": [
-            {
-              "force": 329.9272083,
-              "position": 764.6221667,
-              "date": "2015-01-01T17:57:20.000Z",
-              "dayOfWeek": 4,
-              "dayName": "Thursday",
-              "week": 1,
-              "month": 0,
-              "monthName": "January",
-              "name": "Thursday",
-              "size": 764.6221667
-            },
-            {
-              "force": 263.1222917,
-              "position": 757.2825833,
-              "date": "2015-01-02T18:07:20.000Z",
-              "dayOfWeek": 5,
-              "dayName": "Friday",
-              "week": 1,
-              "month": 0,
-              "monthName": "January",
-              "name": "Friday",
-              "size": 757.2825833
-            },
-            {
-              "force": 372.4335417,
-              "position": 764.57475,
-              "date": "2015-01-03T18:00:40.000Z",
-              "dayOfWeek": 6,
-              "dayName": "Saturday",
-              "week": 1,
-              "month": 0,
-              "monthName": "January",
-              "name": "Saturday",
-              "size": 764.57475
-            }
-          ]
-        },
-        {
-          "name": "Week 2",
-          "children": [
-            {
-              "force": 432.7267917,
-              "position": 752.4258333,
-              "date": "2015-01-04T17:54:00.000Z",
-              "dayOfWeek": 0,
-              "dayName": "Sunday",
-              "week": 2,
-              "month": 0,
-              "monthName": "January",
-              "name": "Sunday",
-              "size": 752.4258333
-            },
-            {
-              "force": 456.0646667,
-              "position": 770.8059167,
-              "date": "2015-01-05T18:04:00.000Z",
-              "dayOfWeek": 1,
-              "dayName": "Monday",
-              "week": 2,
-              "month": 0,
-              "monthName": "January",
-              "name": "Monday",
-              "size": 770.8059167
-            },
-            {
-              "force": 493.545625,
-              "position": 760.1164583,
-              "date": "2015-01-06T17:57:20.000Z",
-              "dayOfWeek": 2,
-              "dayName": "Tuesday",
-              "week": 2,
-              "month": 0,
-              "monthName": "January",
-              "name": "Tuesday",
-              "size": 760.1164583
-            },
-            {
-              "force": 443.7650833,
-              "position": 766.850375,
-              "date": "2015-01-07T18:07:20.000Z",
-              "dayOfWeek": 3,
-              "dayName": "Wednesday",
-              "week": 2,
-              "month": 0,
-              "monthName": "January",
-              "name": "Wednesday",
-              "size": 766.850375
-            },
-            {
-              "force": 372.9894167,
-              "position": 771.3276667,
-              "date": "2015-01-08T18:00:40.000Z",
-              "dayOfWeek": 4,
-              "dayName": "Thursday",
-              "week": 2,
-              "month": 0,
-              "monthName": "January",
-              "name": "Thursday",
-              "size": 771.3276667
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Month #6",
-      "children": [
-        {
-          "name": "Week 29",
+          "name": "7/14-7/19",
           "children": [
             {
               "force": 205.5148333,
@@ -193,7 +82,7 @@
           ]
         },
         {
-          "name": "Week 30",
+          "name": "7/20-7/26",
           "children": [
             {
               "force": 395.2094167,
@@ -282,7 +171,7 @@
           ]
         },
         {
-          "name": "Week 31",
+          "name": "7/27-7/31",
           "children": [
             {
               "force": 576.8877917,
@@ -349,10 +238,10 @@
       ]
     },
     {
-      "name": "Month #7",
+      "name": "August",
       "children": [
         {
-          "name": "Week 31",
+          "name": "8/1-8/2",
           "children": [
             {
               "force": 558.8568333,
@@ -381,7 +270,7 @@
           ]
         },
         {
-          "name": "Week 32",
+          "name": "8/3-8/9",
           "children": [
             {
               "force": 672.448375,
@@ -470,7 +359,7 @@
           ]
         },
         {
-          "name": "Week 33",
+          "name": "8/10-8/16",
           "children": [
             {
               "force": 655.6017083,
@@ -559,7 +448,7 @@
           ]
         },
         {
-          "name": "Week 34",
+          "name": "8/17-8/23",
           "children": [
             {
               "force": 554.03875,
@@ -648,7 +537,7 @@
           ]
         },
         {
-          "name": "Week 35",
+          "name": "8/24-8/30",
           "children": [
             {
               "force": 384.5354583,
@@ -737,7 +626,7 @@
           ]
         },
         {
-          "name": "Week 36",
+          "name": "8/31",
           "children": [
             {
               "force": 382.1485833,
@@ -756,10 +645,10 @@
       ]
     },
     {
-      "name": "Month #8",
+      "name": "September",
       "children": [
         {
-          "name": "Week 36",
+          "name": "9/1-9/6",
           "children": [
             {
               "force": 287.0575417,
@@ -836,7 +725,7 @@
           ]
         },
         {
-          "name": "Week 37",
+          "name": "9/7-9/13",
           "children": [
             {
               "force": 410.919,
@@ -925,7 +814,7 @@
           ]
         },
         {
-          "name": "Week 38",
+          "name": "9/14-9/20",
           "children": [
             {
               "force": 467.5694583,
@@ -1014,7 +903,7 @@
           ]
         },
         {
-          "name": "Week 39",
+          "name": "9/21-9/27",
           "children": [
             {
               "force": 554.8973333,
@@ -1103,7 +992,7 @@
           ]
         },
         {
-          "name": "Week 40",
+          "name": "9/28-9/30",
           "children": [
             {
               "force": 604.5060417,
@@ -1146,10 +1035,10 @@
       ]
     },
     {
-      "name": "Month #9",
+      "name": "October",
       "children": [
         {
-          "name": "Week 40",
+          "name": "10/1-10/4",
           "children": [
             {
               "force": 623.1865833,
@@ -1202,7 +1091,7 @@
           ]
         },
         {
-          "name": "Week 41",
+          "name": "10/5-10/11",
           "children": [
             {
               "force": 506.2401667,
@@ -1291,7 +1180,7 @@
           ]
         },
         {
-          "name": "Week 42",
+          "name": "10/12-10/18",
           "children": [
             {
               "force": 397.991,
@@ -1380,7 +1269,7 @@
           ]
         },
         {
-          "name": "Week 43",
+          "name": "10/19-10/25",
           "children": [
             {
               "force": 462.4085417,
@@ -1469,7 +1358,7 @@
           ]
         },
         {
-          "name": "Week 44",
+          "name": "10/26-10/31",
           "children": [
             {
               "force": 545.48375,
@@ -1548,10 +1437,10 @@
       ]
     },
     {
-      "name": "Month #10",
+      "name": "November",
       "children": [
         {
-          "name": "Week 44",
+          "name": "11/1-11/8",
           "children": [
             {
               "force": 534.5537083,
@@ -1568,7 +1457,7 @@
           ]
         },
         {
-          "name": "Week 45",
+          "name": "11/2-11/8",
           "children": [
             {
               "force": 549.4963333,
@@ -1657,7 +1546,7 @@
           ]
         },
         {
-          "name": "Week 46",
+          "name": "11/9-11/15",
           "children": [
             {
               "force": 459.2546667,
@@ -1746,7 +1635,7 @@
           ]
         },
         {
-          "name": "Week 47",
+          "name": "11/16-11/22",
           "children": [
             {
               "force": 465.8054583,
@@ -1835,7 +1724,7 @@
           ]
         },
         {
-          "name": "Week 48",
+          "name": "11/23-11/29",
           "children": [
             {
               "force": 453.6049583,
@@ -1924,7 +1813,7 @@
           ]
         },
         {
-          "name": "Week 49",
+          "name": "11/30",
           "children": [
             {
               "force": 386.413875,
@@ -1943,10 +1832,10 @@
       ]
     },
     {
-      "name": "Month #11",
+      "name": "December",
       "children": [
         {
-          "name": "Week 1",
+          "name": "12/28-12/31",
           "children": [
             {
               "force": 594.7711667,
@@ -1999,7 +1888,7 @@
           ]
         },
         {
-          "name": "Week 49",
+          "name": "12/1-12/6",
           "children": [
             {
               "force": 456.9395833,
@@ -2076,7 +1965,7 @@
           ]
         },
         {
-          "name": "Week 50",
+          "name": "12/7-12/13",
           "children": [
             {
               "force": 507.4651667,
@@ -2165,7 +2054,7 @@
           ]
         },
         {
-          "name": "Week 51",
+          "name": "12/14-12/20",
           "children": [
             {
               "force": 619.269,
@@ -2254,7 +2143,7 @@
           ]
         },
         {
-          "name": "Week 52",
+          "name": "12/21-12/27",
           "children": [
             {
               "force": 656.8310417,
