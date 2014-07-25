@@ -139,7 +139,7 @@ fs.readFile('day.csv', function(err, file) {
       .map(groupByWeekInMonth)
       .value();
 
-    console.log(result);
+    // console.log(result);
 
     // fs.writeFile("transformedtest.json", JSON.stringify(result), function(err) {
     //   console.log(err);
