@@ -1,5 +1,5 @@
 class DoctorsController < ApplicationController
-
+  include ApplicationHelper
 	
   def show
   	@doctor = Doctor.find(params[:id])
@@ -25,7 +25,21 @@ class DoctorsController < ApplicationController
   # end
 
 	def showpatient
-	@thispatient = User.find(Patient.find(params[:patient_id]).user_id)
+    if params[:pos_ref] != nil
+      update_prescription(params[:pos_ref], params[:force_zero], params[:patient_id])
+    end
+	 @thispatient = User.find(Patient.find(params[:patient_id]).user_id)
 	end 
+
+  def editpatient
+    @doctor = Doctor.find(params[:id])
+    @thispatient = User.find(Patient.find(params[:patient_id]).user_id)
+  end
+
+  def changepatient
+    update_prescription(params[:pos_ref], params[:force_zero], params[:patient_id])
+    redirect_to :controller=>'doctors', :action=>'showpatient', :id=>params[:id], :patient_id=>params[:patient_id]
+  end
+
 
 end

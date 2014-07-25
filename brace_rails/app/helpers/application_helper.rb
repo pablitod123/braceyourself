@@ -72,4 +72,28 @@ module ApplicationHelper
 
     @format = format
   end
+
+  def update_prescription(pos_ref, force_zero, patient_id)
+    require 'csv'
+
+    force_zero = 100
+    pos_ref = 100
+
+    file = 'public/info'+ patient_id.to_s+'.csv'
+
+    data = CSV.read(file)
+    header = data[0]
+    pi = data[1][0]
+    puts pi
+    fz = data[1][1]
+    puts fz
+    fr = data[1][2]
+    pr = data[1][3]
+
+    data2 = CSV.open(file, 'wb') do |csv|
+    csv << header
+    csv << [pi,force_zero,fr,pos_ref]
+    end
+
+  end
 end

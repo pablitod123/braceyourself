@@ -1,0 +1,20 @@
+<div class="row">
+  <h1>Change Prescription</h1>
+</div>
+
+<div class="centered 2 columns row">
+<%=form_for :doctor, url: '/doctors/' + params[:id].to_s + '/patients/' + params[:patient_id].to_s do |f|%>
+<div class="field">
+<div class="narrow input text">
+  <input type="text" name="pos_ref" placeholder="Position Reference"></input>
+</div>
+</div>
+<div class="input">
+  <input type="text" name="force_zero" placeholder="Force Zero"></input>
+</div>
+<%= f.submit "Submit Prescription"%>
+<% end %>
+</div>
+
+
+
