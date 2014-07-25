@@ -34,12 +34,11 @@ h1, h2, h3, h4, h5, p {
   text-align: center;
 }
 
-.align_center {
+/*.align_center {
   text-align: center;
   margin: auto;
-
 }
-
+*/
 #viewdesc {
   margin-top:60px;
   font-size:40px;
@@ -374,7 +373,7 @@ body {
 }
 
 tr:nth-of-type(odd) {
-  background-color: #cfd6d8;
+  background-color: #F0F0F0;
 }
 
 tr:nth-of-type(even) {
@@ -382,18 +381,17 @@ tr:nth-of-type(even) {
 
 td.tr#tr {
   text-align: center;
-  padding: 3px 3px 3px 3px;
+  padding: 10px 10px 10px 10px;
+
 }
 
 /*.logo {
   background-color: red;
 }*/
 
-#reallogo {
-  width:100%;
-  position:absolute;
-  margin: auto;
-  padding:2px;
+#tinylogo {
+  width: 80px;
+  height: 50px;
 }
 
 #incentivetitles {
@@ -407,3 +405,21 @@ td.tr#tr {
   font-size:10px;
   margin:5px;
 } 
+
+/*#forcethis {
+  text-align:center;
+  margin:auto;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+

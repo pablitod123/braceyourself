@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'pages/about'
+
   devise_for :users, :controllers => { :registrations => "registrations"}
   resources :doctors
   resources :patients

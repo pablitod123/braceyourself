@@ -22,33 +22,35 @@
 <body>
 <div class="navbar pretty" id="nav1">
   <div class = "row">
-  <a class="toggle" gumby-trigger="#nav1 > ul" href="#"><i class="icon-menu"></i></a>
-  <h1 class="one columns logo">
-    <a href="/">
-      <div id = "reallogo">
-      <img src="/smalllogo.png" gumby-retina />
-      </div>
-    </a>
-  </h1>
-  <div class="two columns">
-	  	<% if user_signed_in? %>
-         <% if current_user.role === "Doctor" %>
-	  	      <p id = "hiperson">Hi, Dr. <%= current_user.fname %> !</p>
-          <% else %>
-            <p id = "hiperson">Hi, <%= current_user.fname %> !</p>
+    <a class="toggle" gumby-trigger="#nav1 > ul" href="#"><i class="icon-menu"></i></a>
+    <h1 class="two columns logo">
+      <a href="/">  
+        <img id = "tinylogo" src="/smalllogo.png" gumby-retina />
+      </a>
+    </h1>
+        <li class="two columns">
+          <% if user_signed_in? %>
+            <% if current_user.role === "Doctor" %>
+              <p id = "hiperson">Hi, Dr. <%= current_user.fname %>!</p>
+              <% else %>
+              <p id = "hiperson">Hi, <%= current_user.fname %> !</p>
+            <% end %>
           <% end %>
-	  	<% end %>
-  </div>
-  <h1 class="seven columns"></h1>
-  <ul class="two columns">
-    <li>
-    <% if user_signed_in? %>
-	<%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-	<% end %>
-	</li>
-  </ul>
+        </li>
+        <li class = "five columns"></li>
+     <ul class = "three columns">
+        <li>
+          <%= link_to 'About', pages_about_path, :method => :get %>
+        </li>
+        <li>
+          <% if user_signed_in? %>
+         <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+         <% end %>
+        </li>
+    </ul>
   </div>
 </div>
+
 
 <%= yield %><br>
 

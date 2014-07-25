@@ -1,5 +1,5 @@
 <% user = User.find(@allpatients.first.user_id) %>
-<script><%= add_gritter(user.fname + " " + user.lname + " is not wearing the brace properly", :title => "Patient update", :time => 8000, :sticky => false, :image => :warning) %></script>
+<!-- add_gritter(user.fname + " " + user.lname + "has not met prescribed position for 7 days.", :title => "Patient Update", :time => 8000, :sticky => false, :image => :warning) -->
 <!-- need to fix the erb that shows doctor name -->
 
 <div class="row">
@@ -46,18 +46,14 @@
   </div>
   <div class="three columns"></div>
 </div>
-<br>
-<br>
 <% end %>
 <br>
 <div class="row">
-  <div class="centered eight columns align_center">
-    <h3> ...or select a name from your patient list </h3>
+  <div class="centered eight columns">
+    <h3> ...or select a name from your patient list. </h3>
   </div>
-</div>
-<div class="row">
-  <div class="centered two columns align_center">
-  <table>
+  <div class = "centered two columns">
+   <table>
     <% @allpatients.each do |patient| %>
     <tr><td class="tr" id="tr"><% user = User.find(patient.user_id) %>
     <%= link_to user.fname + " " + user.lname, '/doctors/' + params[:id].to_s + '/patients/' + patient.id.to_s%>
@@ -66,6 +62,8 @@
   </table>
   </div>
 </div>
+ 
+
 
 <!-- # {controller: :doctors, action: :showpatient }, id: params[:id], patient_id: patient.id -->
 
