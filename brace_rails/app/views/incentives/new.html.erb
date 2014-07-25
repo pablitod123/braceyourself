@@ -2,7 +2,7 @@
 
 <%= form_for @incentive do |f| %>
 <div class = 'field'>
-Incentive Name
+Incentive Name:
 <%= f.text_field :title, :size=>"50", :placeholder => "ex: Wearing brace every day for a week" %>
 </div>
 <div class = 'field'>
@@ -23,6 +23,9 @@ give <%= User.find(Patient.find_by(parent_id: Parent.find_by(user_id: current_us
 <%= f.hidden_field :parent_id, value: Parent.find_by(user_id: current_user.id).id %>
 <%= f.hidden_field :patient_id, value: Patient.find_by(parent_id: Parent.find_by(user_id: current_user.id).id).id %>
 <br>
+<div class = 'medium btn warning'>
+<%= link_to 'Back', '/', :method => :get %>
+</div>
 <div class = 'medium btn primary'>
 <%= f.submit %>
 </div>
