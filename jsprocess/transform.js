@@ -39,6 +39,18 @@ function groupByWeekInMonth(daysArr, monthNum) {
 // into format of the D3-ready .json file
 ////////////////////////////////////////////////////////////
 
+/**
+ * Given any valid JavaScript type 'struct' and an array of
+ * functions 'fList', calls the first function in 'fList',
+ * which should accept the structure and a function.  The 
+ * function accepts any valid JavaScript type, and executes
+ * the next function in 'fList' with that valid JavaScript type
+ * in the same manner as before.  This process continues recursively
+ * until 'fList' is exhausted.
+ * @param  {any} struct Any valid JavaScript type to be manipulated
+ * @param  {arr} fList  An array of functions that accepts a (struct, function)
+ * @return {any}        Returns a (probably modified) 'struct'
+ */
 function nestedFunctionalMap(struct, fList) {
   function g(struct) {
     if (_.isEmpty(this.fList))
@@ -53,6 +65,10 @@ function nestedFunctionalMap(struct, fList) {
   return g.apply({fList: fList}, [struct]);
 }
 
+// 'structureTransforms' contains the list of functions
+// that will be applied to transform the data structure
+// into one usable by D3.js.  They are listed in order,
+// and composed into an array which is passed to 'nestedFunctionalMap'.
 var structureTransforms = {    
   setupTopLevelData: function(original, q) {
     return {
@@ -90,19 +106,13 @@ var structureTransforms = {
     });
   },
 
-  aliasKeys: function(week, q) {
-    return q(_.extend(week, {
-      name: week.dayName,
-      size: week.position
+  aliasKeys: function(day, q) {
+    return q(_.extend(day, {
+      name: day.dayName,
+      size: day.position
     }));
   }
 };
-
-var pipeline = [ structureTransforms.setupTopLevelData,
-                 structureTransforms.mapMonths,
-                 structureTransforms.transformWeekObjects,
-                 structureTransforms.createWeekStructure,
-                 structureTransforms.aliasKeys ];
 
 // Asynchronously read file, and parse it, then enter
 // the processing stage
@@ -119,8 +129,18 @@ fs.readFile('day.csv', function(err, file) {
       .map(groupByWeekInMonth)
       .value();
 
-    var structured = nestedFunctionalMap(organized, pipeline);
+    // Transform the 'organized' data into the same schema as the
+    // 'readme.json' example file.
+    var structured = nestedFunctionalMap(
+      organized,
+      [ structureTransforms.setupTopLevelData,
+        structureTransforms.mapMonths,
+        structureTransforms.transformWeekObjects,
+        structureTransforms.createWeekStructure,
+        structureTransforms.aliasKeys ]
+    );
 
+    // Write the output into a .json file.
     fs.writeFile('d3_ready.json', JSON.stringify(structured));
   });
 });
