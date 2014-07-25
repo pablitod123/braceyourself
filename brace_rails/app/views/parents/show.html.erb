@@ -208,7 +208,7 @@ svg.append("g")
   .append("line")
     .attr("y1", "100%");
  
-d3.json("/readme.json", function(error, root) {
+d3.json("/d3_ready.json", function(error, root) {
   partition.nodes(root);
   x.domain([0, root.value]).nice();
   down(root, 0);
@@ -354,7 +354,7 @@ function down(d, i) {
   // }
 
   var c = d.children.length
-  if (c == 5) {
+  if (c == 2) {
     blah('allmonths');
   }
 
@@ -557,7 +557,7 @@ var margin = {top: 0, right: 60, bottom: 50, left: 120},
     height = 600 - margin.top - margin.bottom;
 
 // Parse the date / time
-var format = d3.time.format("%a %b %d %Y %H:%M:%S GMT%Z (EDT)").parse;
+var format = d3.time.format("%Y-%m-%dT%H:%M:%S.%LZ").parse;
 
 // Set the ranges
 var x = d3.time.scale().range([0, width]);
@@ -584,10 +584,11 @@ var svg = d3.select("#drilldown")
         .attr("transform", 
               "translate(" + margin.left + "," + margin.top + ")");
 
+var parseDate = d3.time.format("%a %b %d %Y %H:%M:%S GMT%Z (EDT)").parse;
 // Get the data
 d3.csv("/every6minutes5.csv", function(error, data) {
     data.forEach(function(d) {
-        d.date = format(d.date);
+        d.date = parseDate(d.date);
         d.Position = +d.Position;
     });
 
